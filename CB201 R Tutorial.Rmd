@@ -15,6 +15,8 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+McDonalds_FullData <- read.csv("https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv")
 ```
 
 
@@ -26,14 +28,21 @@ This tutorial explains in more detail the syntax, functions, and code you'll be 
 * importing and processing data using tidyverse
 * visualizing data using ggplot2 (focusing on generating scatterplots)
 
-This tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R. Refer to the resource guide on Canvas.
+Please note, this tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R. Refer to the following resources:
+
+* [Harvard Catalyst online course: Introduction to R](https://catalyst.harvard.edu/courses/intro-to-r/)
+* [HSPH Bioinformatics Core workshops](https://bioinformatics.sph.harvard.edu/upcoming-workshops)
+  + [Introduction to R self-learning on Github](https://hbctraining.github.io/Intro-to-R-flipped/schedules/links-to-lessons.html)
+* [Center for Computational Biomedicine](https://computationalbiomed.hms.harvard.edu/education/)
+
+<br/>
 
 
 ## Some basic syntax
 
 ### Output text
 
-To output text in R, use single or double quotes. Click on the "Run code" button to run code within each block and see output.
+To output text in R, use single or double quotes. Click on the "Run code" button to run code within each block. Compare the outputs from these 2 blocks. Do you see any difference?
 
 ```{r output-text1, exercise=TRUE}
 "Quantitative proteomics is awesome"
@@ -43,8 +52,8 @@ To output text in R, use single or double quotes. Click on the "Run code" button
 'Quantitative proteomics is awesome'
 ```
 
-
 <br/>
+
 
 ### Output number
 
@@ -59,9 +68,9 @@ To output number, just type the number (without quotes). Run code below.
 
 ### Add comments
 
-Comments can be used to explain R code. It can also be used to prevent execution when testing alternative code.
+Comments can be used to explain R code. It can also be used to prevent execution of alternative code when testing.
 
-Comments starts with one or more `#`. R will ignore anything that starts with `#`. Run code chunks below and compare the outputs
+Comments starts with one or more `#`. R will ignore anything that starts with `#`. Run code chunks below and compare the outputs.
 
 ```{r add-comments1, exercise=TRUE}
 "Quantitative proteomics is awesome"
@@ -76,6 +85,7 @@ Comments starts with one or more `#`. R will ignore anything that starts with `#
 3+3           # Comment at the end of a line of code
 ```
 
+<br/>
 
 
 ## Some common R commands (Part 1)
@@ -107,8 +117,8 @@ Your turn: try some of additional arithmetic operators. _Hint: You can type dire
 
 ```
 
-
 <br/>
+
 
 ### Compare values
 
@@ -147,7 +157,7 @@ Logical operators are used to carry out Boolean operations like AND, OR etc.
 |:--------:|:------------|
 | !        | NOT         |
 | &        | AND (TRUE when both sides are TRUE) |
-| \|        | OR (TRUE when either side is TRUE) |
+| \|       | OR (TRUE when either side is TRUE) |
 
 ```{r and, exercise=TRUE}
 # AND operator
@@ -161,6 +171,44 @@ Your turn: try some of the logical operators.
 ```{r logical, exercise=TRUE}
 
 ```
+
+<br/>
+
+### A quick note on functions
+
+A function is a set of code organized to perform certain tasks. It takes input arguments and produces outputs by executing built-in R commands inside the function. R has a large number of built-in functions and the user can create their own functions. For more info, watch this 4 min video on [functions](https://vimeo.com/429606516).
+
+The following code chunks showcase a few basic functions:
+
+```{r function1, exercise=TRUE}
+log10(100)            ## log base 10              
+```
+
+```{r function2, exercise=TRUE}
+exp(3)                ## e raised to a certain power
+```
+
+```{r function3, exercise=TRUE}
+abs(-10)              ## absolute value
+```
+
+```{r function4, exercise=TRUE}
+sqrt(1764)            ## square root
+```
+
+<br/>
+
+If you'd like more info on any function, use `help()` or `?`. Try running the following code chunks to find more info on the functions `log10()` and `abs`.
+
+```{r function-help1, exercise=TRUE}
+help(log10)
+```
+
+```{r function-help2, exercise=TRUE}
+?abs
+```
+
+<br/>
 
 
 
@@ -179,15 +227,14 @@ Name <- "Doe"             ## Variable can be easily rewritten
 Age <- 40
 ```
 
-
 ```{r create-variable2, exercise=TRUE, exercise.setup = "create-variable1"}
 # Print variables
 Name
 Age
 ```
 
-
 <br/>
+
 
 ### Data types
 
@@ -204,13 +251,6 @@ Note, there are other data types. We will not discuss those in this tutorial bc 
 class(Name)
 class(Age)
 ```
-
-
-<br/>
-
-### A quick note on functions
-
-Up until now we’ve been creating simple objects by directly assigning a single value to an object. To create more complicated objects and perform more complex tasks, we will need functions. Think of a function as an object which contains a series of instructions to perform a specific task. For example, we used `class()` function in the last code block to find out the data type of `Name` and `Age`. For more info, watch this 4 min video on [functions](https://vimeo.com/429606516).
 
 <br/>
 
@@ -347,7 +387,7 @@ In EA2, you will be asked to join data frames.
 * `rbind( )` can be used to add/join rows
 * `cbind( )` can be used to add/join columns
 
-In the following set of exercises, we will use `rbind( )` to add a few more entries to the McDonalds data frame. We will then use `cbind()` to add a few more columns with nutrition info to the McDonalds data frame. See diagram below:
+In the following set of code chunks, we will use `rbind( )` to add a few more entries to the McDonalds data frame. We will then use `cbind()` to add a few more columns with nutrition info to the McDonalds data frame. See diagram below:
 
 ![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
 
@@ -410,6 +450,160 @@ ncol(McDonalds)
 # Find dimensions of data frame
 dim(McDonalds)
 ```
+
+<br/>
+
+
+## Import and process data
+
+### Packages in R and Tidyverse
+
+Packages are the units of reproducible R code. They include R functions, the documentation that describes how to use those functions, and sample data. By default, R installs a set of packages during installation. Others need to be installed and loaded prior to use. These packages are available for download from [CRAN](https://CRAN.R-project.org/) and other repositories such as [Bioconductor]
+(https://www.bioconductor.org/).
+
+* To install packages use code such as `install.packages("tidyverse")`. 
+* To load packages use code such as `library(tidyverse)`.
+* To check out what packages are installed already use `installed.packages()`.
+* To check if any packages need updating use `old.packages()`.
+
+[Tidyverse](https://www.tidyverse.org/) is a collection packages useful for data science. For EA2, we will use the packages `dplyr` and `ggplot2` from `tidyverse`for data processing and data visualization, respectively.
+
+
+### Inspecting your workspace
+
+It's a good practice to inspect your working directory before any coding projects. Working directory is where R will look, by default, for files you ask it to load. It's also where, by default, any files you write to disk will go.
+
+* To check you working directory use `getwd()`
+* to set your working directory use code such as `setwd("Desktop/CB201_EA2_Tutorial")`
+
+
+### Importing data
+
+Comma-separated file (.csv file) is one of the most commonly used  file formats for data storage in the biological/biomedical sciences. csv files store tabular data (number and text) in plain text. It use comma to separate values.
+
+* The built-in `read.csv()` function read in a .csv file as a data frame
+* `read_csv()` function from the `tidyverse` suite of packages offers more functionality
+* `read_excel(  )` function from the `readxl` package reads in Excel files
+
+
+### Inspecting data
+
+In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data frame contains the nutritional value items on McDonald's menu. **Note, this data frame has been pre-loaded for you.** Let's first inspect this data frame...
+
+Previously, we looked at `nrow()`, `ncol()`, `dim()`. Try using these functions to figure out the number of rows , the number of columns, and the dimension of `McDonalds_FullData`.
+
+```{r inspect-data1, exercise=TRUE}
+
+```
+
+<br/>
+
+Other useful functions for inspecting data:
+
+| Function | Description |
+|:--------:|:------------|
+| head()   | return first parts of data frame |
+| tail()   | return last parts of data frame |
+| str()    | compactly look at the structure of data frame |
+| glimpse() | from dplyr package, get a glimpse of data frame |
+| summary() | get quick statistics of columns |
+
+Now, it's your turn to try out a few of these functions:
+
+```{r inspect-data2, exercise=TRUE}
+glimpse(McDonalds_FullData)
+```
+
+
+<br/>
+
+### Processing data
+
+Pipes, `%>%`, allows the output of a previous command to be used as the input of another command, rather than using nested functions. This can make code more human readable. Compare the outputs from the following 2 code chunks:
+
+```{r pipe1, exercise=TRUE}
+round(sqrt(95), digit = 1)           ## use nested functions
+```
+
+```{r pipe2, exercise=TRUE}
+sqrt(95) %>% round(digit = 1)        ## use %>%
+```
+
+<br/>
+
+
+`%>%` is often used to string together multiple functions from the `dplyr()` package used for data wrangling. These functions include: 
+
+| Function | Description |
+|:--------:|:------------|
+| filter() | pick rows based on certain condition(s) |
+| select() | extracts (and optional renames) variables |
+| rename() | changes the name of variables |
+| mutate() | add new variables that are derived from existing variables |
+| arrange() | orders rows by values of selected variable |
+| group_by() | groups data frame by values of variable(s) for subsequent operation(s) |
+| summarise() | reduces multiple values down to a single summary (e.g., mean) |
+
+Your turn: try figure out that the following lines of code is trying to achieve:
+
+```{r wrangle, exercise=TRUE}
+McDonalds_FullData %>%
+  select(Category, Item, Calories, Calories.from.Fat) %>% 
+  filter(Calories != 0) %>%
+  rename(FatCalories = Calories.from.Fat) %>% 
+  mutate(PercentFatCalories = FatCalories / Calories * 100) %>%
+  group_by(Category) %>%
+  summarise(MeanPercent = mean(PercentFatCalories)) %>%
+  arrange(desc(MeanPercent))
+```
+
+<div id="wrangle-hint">
+**Hint:** Calculate the average % of total calorie from fat for different categories and arrange the output in descending order (items with 0 calories were excluded from analysis).
+</div>
+
+<br/>
+
+
+## Visualize data using ggplot2
+
+`ggplot2` is a dedicated package for data visualization. Every graph in ggplot2 is built using at least three components:
+
+* __data__: data set for graphing
+* __aesthetics__: variables mapped to x or y positions and aesthetics attributes such as color, shape, or size
+* __geometries__: way of displaying data (e.g., bars, points, lines)
+
+Other optional elements include:
+
+* __scale__: map data values to visual values of an aesthetic
+* __theme__: adjust graphic background, axis, grid, etc
+* __labeling__: add/modify graphic title, subtitle, caption, legend, etc
+* __statistics__: transform data for graphing (e.g., graph mean, median, etc)
+* __facets__: display subsets of data 
+* __coordinates__: transform axis
+
+Now, let's build a scatter plot to show the relationship between Calories and Protein of items in `McDonalds_FullData`.
+
+```{r ggplot1, exercise=TRUE}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein)) +
+  geom_point()
+```
+
+<br/>
+
+Your turn: try out the following changes to our plot. Remember, you can edit the code in the code chunks.
+
+* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead.
+* To use empty circles for graphing (preferred when dots overlap), specify shape and size of within geom_point: `geom_point(shape = 21, size = 1.5)`
+* To add just x-axis and/or y-axis, try adding the following functions `scale_x_continuous(limits = c(0, 2000), breaks = seq(from = 0, to = 2000, by = 500))` and/or `scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 25))`
+* To adjust the theme of the graph, try adding the following function: `theme_bw()`
+* To add/edit labels, try adding: `labs(x = "Calories (Cal)", y = "Protein (g)", title = "Protein and Calorie of Items on McDonald's Menu")`
+
+For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet]()
+
+
+
+
 
 
 
