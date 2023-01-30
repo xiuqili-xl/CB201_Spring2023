@@ -5,10 +5,10 @@ account: xiuqili
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8043106
-bundleId: 6788036
+bundleId: 6789319
 url: https://xiuqili.shinyapps.io/CB201_Spring2023_R_Tutorial/
-when: 1675050647.13005
-lastSyncTime: 1675050647.13006
+when: 1675083121.97578
+lastSyncTime: 1675083121.97579
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: README.md

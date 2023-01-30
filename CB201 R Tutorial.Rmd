@@ -508,12 +508,12 @@ Comma-separated file (.csv file) is one of the most commonly used  file formats 
 * `read_csv()` function from the `tidyverse` suite of packages offers more functionality
 * `read_excel(  )` function from the `readxl` package reads in Excel files
 
-![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
+![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/csv_file.png){width=90%}
 
 
 ### Inspecting data
 
-In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data set was adapted from Kaggle dataset: [Nutrition Facts for McDonald's Menu](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts). It contains the nutritional value items on McDonald's menu. 
+In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data set was adapted from Kaggle dataset: [Nutrition Facts for McDonald's Menu](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts). It contains the nutritional value of items on McDonald's menu. 
 
 **Note, this data frame has been pre-loaded for you.** Let's start with inspecting this data frame...
 
@@ -522,6 +522,13 @@ Previously, we looked at `nrow()`, `ncol()`, `dim()`. Try using these functions 
 ```{r inspect-data1, exercise=TRUE}
 
 ```
+
+
+<div id="inspect-data1-hint">
+**Hint:** number of rows = 260, number of columns = 24, dimetion = 260 x 24
+</div>
+
+
 
 <br/>
 
@@ -535,7 +542,7 @@ Other useful functions for inspecting data:
 | glimpse() | from dplyr package, get a glimpse of data frame |
 | summary() | get quick statistics of columns |
 
-Now, it's your turn to try out a few of these functions:
+Now, it's your turn to try out a few of these functions. Please feel free to edit the code chunk below.
 
 ```{r inspect-data2, exercise=TRUE}
 glimpse(McDonalds_FullData)
@@ -571,7 +578,7 @@ sqrt(95) %>% round(digit = 1)        ## use %>%
 | group_by() | groups data frame by values of variable(s) for subsequent operation(s) |
 | summarise() | reduces multiple values down to a single summary (e.g., mean) |
 
-Your turn: try figure out that the following lines of code is trying to achieve:
+Your turn: try figure out what the following lines of code is trying to achieve:
 
 ```{r wrangle, exercise=TRUE}
 McDonalds_FullData %>%
@@ -619,7 +626,24 @@ ggplot(data = McDonalds_FullData,
   geom_point()
 ```
 
-```{r ggplot1-solution}
+<br/>
+
+Your turn: try out the following changes to our plot. Feel free to edit the code in the code chunks.
+
+* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead
+* To use empty circles for graphing (preferred when dots overlap), specify shape and size of within geom_point: `geom_point(shape = 21, size = 1.5)`
+* To add just x-axis and/or y-axis, try adding the following functions `scale_x_continuous(limits = c(0, 2000), breaks = seq(from = 0, to = 2000, by = 500))` and/or `scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 25))`
+* To adjust the theme of the graph, try adding the following function: `theme_bw()`
+* To add/edit labels, try adding: `labs(x = "Calories (Cal)", y = "Protein (g)", title = "Protein and Calorie of Items on McDonald's Menu")`
+
+
+```{r ggplot1b, exercise=TRUE}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein)) +
+  geom_point()
+```
+
+```{r ggplot1b-solution}
 ggplot(data = McDonalds_FullData,
        mapping = aes(x = Calories, y = Protein, color = Category)) +
   geom_point(shape = 21, size = 1.5) +
@@ -633,24 +657,13 @@ ggplot(data = McDonalds_FullData,
        title = "Protein and Calorie of Items on McDonald's Menu")
 ```
 
-<br/>
-
-Your turn: try out the following changes to our plot. Remember, you can edit the code in the code chunks.
-
-* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead
-* To use empty circles for graphing (preferred when dots overlap), specify shape and size of within geom_point: `geom_point(shape = 21, size = 1.5)`
-* To add just x-axis and/or y-axis, try adding the following functions `scale_x_continuous(limits = c(0, 2000), breaks = seq(from = 0, to = 2000, by = 500))` and/or `scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 25))`
-* To adjust the theme of the graph, try adding the following function: `theme_bw()`
-* To add/edit labels, try adding: `labs(x = "Calories (Cal)", y = "Protein (g)", title = "Protein and Calorie of Items on McDonald's Menu")`
-
-Click on the "Solution" button to see code with all the adjustments above. 
 
 For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
 
 
 ### Highlight data points in a scatter plot
 
-Looking the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` in `ggplot()`. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
+Looking the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` to generate the graph. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
 
 ```{r ggplot2, exercise=TRUE}
 # Filter for outlier
@@ -723,7 +736,7 @@ Use `ggsave()` function to export your plot. It defaults to saving the last plot
 
 ### Quick notes about interactive visualization
 
-In EA2 you will also create interactive visualization. Specifically, you will use the following packages:
+In EA2, you will also create interactive visualization. Specifically, you will use the following packages:
 
 * `plotly` is a open-source library for developing interactive visualizations. It provides a number of “standard” interactions (pop-up labels, drag to pan, select to zoom, etc) automatically. Moreover, it is possible to take a `ggplot2` plot and wrap it in Plotly in order to make it interactive.
 * `htmlwidgets` provides a way to utilize a number of JavaScript interactive visualization libraries. JavaScript is the programming language used to create interactive websites (HTML files), and so is highly specialized for creating interactive experiences.
