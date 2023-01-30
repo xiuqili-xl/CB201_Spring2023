@@ -14,9 +14,11 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggrepel)
+
+knitr::opts_chunk$set(echo = FALSE)
+
 McDonalds_FullData <- read.csv("https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv")
 ```
 
@@ -29,7 +31,7 @@ This tutorial explains in more detail the syntax, functions, and code you'll be 
 * importing and processing data using tidyverse
 * visualizing data using ggplot2 (focusing on generating scatterplots)
 
-Please note, this tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R. Refer to the following resources:
+Please note, this tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R, refer to the following resources:
 
 * [Harvard Catalyst online course: Introduction to R](https://catalyst.harvard.edu/courses/intro-to-r/)
 * [HSPH Bioinformatics Core workshops](https://bioinformatics.sph.harvard.edu/upcoming-workshops)
@@ -43,7 +45,7 @@ Please note, this tutorial is not meant to be a comprehensive guide to R. If you
 
 ### Output text
 
-To output text in R, use single or double quotes. Click on the "Run code" button to run code within each block. Compare the outputs from these 2 blocks. Do you see any difference?
+To output text in R, use single or double quotes. Click on the "Run Code" button below to run code within each code chunk. Compare the outputs from these 2 blocks. Do you see any difference?
 
 ```{r output-text1, exercise=TRUE}
 "Quantitative proteomics is awesome"
@@ -52,6 +54,11 @@ To output text in R, use single or double quotes. Click on the "Run code" button
 ```{r output-text2, exercise=TRUE}
 'Quantitative proteomics is awesome'
 ```
+
+<div id="output-text2-hint">
+**Note:** Both signle and double quotes can be used to output text in R.
+</div>
+
 
 <br/>
 
@@ -85,6 +92,12 @@ Comments starts with one or more `#`. R will ignore anything that starts with `#
 # 2+2
 3+3           # Comment at the end of a line of code
 ```
+
+
+<div id="add-comments2-hint">
+**Note:** Because of `#`, R only calculates 3+3 in this code block.
+</div>
+
 
 <br/>
 
@@ -165,6 +178,11 @@ Logical operators are used to carry out Boolean operations like AND, OR etc.
 (42 > 23) & (6 == 5) 
 ```
 
+<div id="and-hint">
+**Note:** (42 > 23) is TRUE; (6 == 5) is FALSE. For AND operator to be TRUE, arguments on both sides need to be TRUE. Thus, the output for `(42 > 23) & (6 == 5)` is FALSE.
+</div>
+
+
 <br/>
 
 Your turn: try some of the logical operators.
@@ -199,7 +217,7 @@ sqrt(1764)            ## square root
 
 <br/>
 
-If you'd like more info on any function, use `help()` or `?`. Try running the following code chunks to find more info on the functions `log10()` and `abs`.
+If you'd like more info on any function, use `help()` or `?`. Try running the following code chunks to find more info on the functions `log10()` and `abs()`.
 
 ```{r function-help1, exercise=TRUE}
 help(log10)
@@ -234,6 +252,11 @@ Name
 Age
 ```
 
+<div id="create-variable2-hint">
+**Hint:** `Name` has been re-written from "John" to "Doe" in the previous code chunk.
+</div>
+
+
 <br/>
 
 
@@ -245,10 +268,10 @@ Variable can store data of different types. Common data types include:
 * __Character (aka string)__: “x”, “CB201 is so cool”, “FALSE”, “11.5”
 * __Logical (aka Boolean)__: TRUE or FALSE
 
-Note, there are other data types. We will not discuss those in this tutorial bc they are beyond the scope of EA2.
+Note, there are other data types. We will not discuss those in this tutorial because they are beyond the scope of EA2.
 
 ```{r datatype, exercise=TRUE, exercise.setup = "create-variable1"}
-# Check the data type of a variable using class()
+# Check the data type of a variable using the function class()
 class(Name)
 class(Age)
 ```
@@ -258,7 +281,7 @@ class(Age)
 
 ### Data structure - vector
 
-You will be working with 2 common data structures in EA2: __vector__ and __data frame__. There are other data structures. We will not discuss those in this tutorial bc they are beyond the scope of EA2.
+You will be working with 2 common data structures in EA2: __vector__ and __data frame__. There are other data structures. We will not discuss those in this tutorial because they are beyond the scope of EA2.
 
 __Vector__ is the most basic data structure in R. They are often defined using `c()`. `c` stands for concatenate, aka put these together as a vector.
 
@@ -277,7 +300,7 @@ Meat <- c(TRUE, TRUE, FALSE, FALSE)
 
 <br/>
 
-Your turn: try printing each of the vectors defined above
+Your turn: try printing each of the vectors defined above.
 
 ```{r vector-print, exercise=TRUE, exercise.setup = "vector-setup"}
 
@@ -459,8 +482,7 @@ dim(McDonalds)
 
 ### Packages in R and Tidyverse
 
-Packages are the units of reproducible R code. They include R functions, the documentation that describes how to use those functions, and sample data. By default, R installs a set of packages during installation. Others need to be installed and loaded prior to use. These packages are available for download from [CRAN](https://CRAN.R-project.org/) and other repositories such as [Bioconductor]
-(https://www.bioconductor.org/).
+Packages are the units of reproducible R code. They include R functions, the documentation that describes how to use those functions, and sample data. By default, R installs a set of packages during installation. Others need to be installed and loaded prior to use. These packages are available for download from [CRAN](https://CRAN.R-project.org/) and other repositories such as [Bioconductor](https://www.bioconductor.org/).
 
 * To install packages use code such as `install.packages("tidyverse")`. 
 * To load packages use code such as `library(tidyverse)`.
@@ -475,16 +497,18 @@ Packages are the units of reproducible R code. They include R functions, the doc
 It's a good practice to inspect your working directory before any coding projects. Working directory is where R will look, by default, for files you ask it to load. It's also where, by default, any files you write to disk will go.
 
 * To check you working directory use `getwd()`
-* to set your working directory use code such as `setwd("Desktop/CB201_EA2_Tutorial")`
+* To set your working directory use code such as `setwd("Desktop/CB201_EA2_Tutorial")`
 
 
 ### Importing data
 
-Comma-separated file (.csv file) is one of the most commonly used  file formats for data storage in the biological/biomedical sciences. csv files store tabular data (number and text) in plain text. It use comma to separate values.
+Comma-separated file (.csv file) is one of the most commonly used  file formats for data storage in the biological/biomedical sciences. csv files store tabular data (number and text) in plain text. It use comma to separate values (see figure below).
 
 * The built-in `read.csv()` function read in a .csv file as a data frame
 * `read_csv()` function from the `tidyverse` suite of packages offers more functionality
 * `read_excel(  )` function from the `readxl` package reads in Excel files
+
+![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
 
 
 ### Inspecting data

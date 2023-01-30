@@ -121,7 +121,7 @@ Specifically, this tutorial will cover:</p>
 scatterplots)</li>
 </ul>
 <p>Please note, this tutorial is not meant to be a comprehensive guide
-to R. If you are interested in learning R. Refer to the following
+to R. If you are interested in learning R, refer to the following
 resources:</p>
 <ul>
 <li><a href="https://catalyst.harvard.edu/courses/intro-to-r/">Harvard
@@ -145,8 +145,8 @@ Computational Biomedicine</a></li>
 <div id="section-output-text" class="section level3">
 <h3>Output text</h3>
 <p>To output text in R, use single or double quotes. Click on the “Run
-code” button to run code within each block. Compare the outputs from
-these 2 blocks. Do you see any difference?</p>
+Code” button below to run code within each code chunk. Compare the
+outputs from these 2 blocks. Do you see any difference?</p>
 <div class="tutorial-exercise" data-label="output-text1"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
@@ -158,6 +158,10 @@ data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <pre class="text"><code>&#39;Quantitative proteomics is awesome&#39;</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div id="section-output-text2-hint">
+<p><strong>Hint:</strong> Both signle and double quote can be used to
+output text in R.</p>
 </div>
 <p><br/></p>
 </div>
@@ -195,6 +199,10 @@ data-lines="0">
 # 2+2
 3+3           # Comment at the end of a line of code</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div id="section-add-comments2-hint">
+<p><strong>Hint:</strong> Because of #, R only calculates 3+3 in this
+code block.</p>
 </div>
 <p><br/></p>
 </div>
@@ -342,6 +350,11 @@ data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># AND operator
 (42 &gt; 23) &amp; (6 == 5) </code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div id="section-and-hint">
+<p><strong>Hint:</strong> (42 &gt; 23) is TRUE; (6 == 5) is FALSE. For
+AND operator to be TRUE, arguments on both sides need to be TRUE. Thus,
+the output for <code>(42 &gt; 23) &amp; (6 == 5)</code> is FALSE.</p>
 </div>
 <p><br/></p>
 <p>Your turn: try some of the logical operators.</p>
@@ -1087,9 +1100,11 @@ tutorial.</p>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggrepel)
+
+knitr::opts_chunk$set(echo = FALSE)
+
 McDonalds_FullData <- read.csv("https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv")
 </script>
  
@@ -1123,8 +1138,8 @@ output$`tutorial-exercise-output-text1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "output-text1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "output-text1", code = "\"Quantitative proteomics is awesome\"", 
         opts = list(label = "\"output-text1\"", exercise = "TRUE"), 
@@ -1163,8 +1178,8 @@ output$`tutorial-exercise-output-text2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "output-text2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "output-text2", code = "'Quantitative proteomics is awesome'", 
         opts = list(label = "\"output-text2\"", exercise = "TRUE"), 
@@ -1203,8 +1218,8 @@ output$`tutorial-exercise-output-number-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "output-number", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "output-number", code = "42", 
         opts = list(label = "\"output-number\"", exercise = "TRUE"), 
@@ -1243,8 +1258,8 @@ output$`tutorial-exercise-add-comments1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "add-comments1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "add-comments1", code = "\"Quantitative proteomics is awesome\"\n2+2\n3+3", 
         opts = list(label = "\"add-comments1\"", exercise = "TRUE"), 
@@ -1283,8 +1298,8 @@ output$`tutorial-exercise-add-comments2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "add-comments2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "add-comments2", code = "# \"Quantitative proteomics is awesome\"\n# 2+2\n3+3           # Comment at the end of a line of code", 
         opts = list(label = "\"add-comments2\"", exercise = "TRUE"), 
@@ -1324,8 +1339,8 @@ output$`tutorial-exercise-addition-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "addition", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "addition", code = "# Add 42 and 23\n42 + 23", 
         opts = list(label = "\"addition\"", exercise = "TRUE"), 
@@ -1364,8 +1379,8 @@ output$`tutorial-exercise-calculation-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "calculation", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "calculation", code = "", opts = list(
         label = "\"calculation\"", exercise = "TRUE"), engine = "r")), 
@@ -1403,8 +1418,8 @@ output$`tutorial-exercise-equal-to-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "equal-to", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "equal-to", code = "# Is 42 equal to 23?\n42 == 23", 
         opts = list(label = "\"equal-to\"", exercise = "TRUE"), 
@@ -1443,8 +1458,8 @@ output$`tutorial-exercise-compare-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "compare", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "compare", code = "", opts = list(
         label = "\"compare\"", exercise = "TRUE"), engine = "r")), 
@@ -1482,8 +1497,8 @@ output$`tutorial-exercise-and-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "and", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "and", code = "# AND operator\n(42 > 23) & (6 == 5) ", 
         opts = list(label = "\"and\"", exercise = "TRUE"), engine = "r")), 
@@ -1521,8 +1536,8 @@ output$`tutorial-exercise-logical-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "logical", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "logical", code = "", opts = list(
         label = "\"logical\"", exercise = "TRUE"), engine = "r")), 
@@ -1560,8 +1575,8 @@ output$`tutorial-exercise-function1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function1", code = "log10(100)            ## log base 10              ", 
         opts = list(label = "\"function1\"", exercise = "TRUE"), 
@@ -1600,8 +1615,8 @@ output$`tutorial-exercise-function2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function2", code = "exp(3)                ## e raised to a certain power", 
         opts = list(label = "\"function2\"", exercise = "TRUE"), 
@@ -1640,8 +1655,8 @@ output$`tutorial-exercise-function3-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function3", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function3", code = "abs(-10)              ## absolute value", 
         opts = list(label = "\"function3\"", exercise = "TRUE"), 
@@ -1680,8 +1695,8 @@ output$`tutorial-exercise-function4-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function4", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function4", code = "sqrt(1764)            ## square root", 
         opts = list(label = "\"function4\"", exercise = "TRUE"), 
@@ -1720,8 +1735,8 @@ output$`tutorial-exercise-function-help1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function-help1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function-help1", code = "help(log10)", 
         opts = list(label = "\"function-help1\"", exercise = "TRUE"), 
@@ -1760,8 +1775,8 @@ output$`tutorial-exercise-function-help2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function-help2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "function-help2", code = "?abs", 
         opts = list(label = "\"function-help2\"", exercise = "TRUE"), 
@@ -1800,8 +1815,8 @@ output$`tutorial-exercise-create-variable1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "create-variable1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
@@ -1842,8 +1857,8 @@ output$`tutorial-exercise-create-variable2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "create-variable2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
     chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
@@ -1886,8 +1901,8 @@ output$`tutorial-exercise-datatype-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "datatype", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
     chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
@@ -1930,8 +1945,8 @@ output$`tutorial-exercise-vector-setup-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "vector-setup", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -1973,8 +1988,8 @@ output$`tutorial-exercise-vector-print-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "vector-print", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2016,8 +2031,8 @@ output$`tutorial-exercise-sequcence1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sequcence1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "sequcence1", code = "# Use the : operator\n0:20\n20:0", 
         opts = list(label = "\"sequcence1\"", exercise = "TRUE"), 
@@ -2056,8 +2071,8 @@ output$`tutorial-exercise-sequcence2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sequcence2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "sequcence2", code = "# Use the seq( ) function\nseq(from = 0, to = 20)\nseq(from = 0, to = 20, by = 2)", 
         opts = list(label = "\"sequcence2\"", exercise = "TRUE"), 
@@ -2097,8 +2112,8 @@ output$`tutorial-exercise-sequcence3-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "sequcence3", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "sequcence3", code = "# Use the rep( ) function\nrep(1, times = 5)\nrep(c(0, 1, 2), times = 5)\nrep(c(0, 1, 2), each = 5)", 
         opts = list(label = "\"sequcence3\"", exercise = "TRUE"), 
@@ -2138,8 +2153,8 @@ output$`tutorial-exercise-functions-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "functions", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2183,8 +2198,8 @@ output$`tutorial-exercise-functions2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "functions2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2226,8 +2241,8 @@ output$`tutorial-exercise-dataframe-creation-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "dataframe-creation", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2271,8 +2286,8 @@ output$`tutorial-exercise-dataframe-subset1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2318,8 +2333,8 @@ output$`tutorial-exercise-dataframe-subset2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2365,8 +2380,8 @@ output$`tutorial-exercise-dataframe-subset3-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset3", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2412,8 +2427,8 @@ output$`tutorial-exercise-dataframe-subset4-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset4", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2459,8 +2474,8 @@ output$`tutorial-exercise-rbind1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "rbind1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2507,8 +2522,8 @@ output$`tutorial-exercise-rbind2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "rbind2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2561,8 +2576,8 @@ output$`tutorial-exercise-cbind1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "cbind1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2615,8 +2630,8 @@ output$`tutorial-exercise-cbind2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "cbind2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2674,8 +2689,8 @@ output$`tutorial-exercise-function-dataframe-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "function-dataframe", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds\n# Define a Carbs data frame\nCarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, Carbs)\nMcDonalds", 
     chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
@@ -2735,8 +2750,8 @@ output$`tutorial-exercise-inspect-data1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "inspect-data1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "inspect-data1", code = "", opts = list(
         label = "\"inspect-data1\"", exercise = "TRUE"), engine = "r")), 
@@ -2774,8 +2789,8 @@ output$`tutorial-exercise-inspect-data2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "inspect-data2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "inspect-data2", code = "glimpse(McDonalds_FullData)", 
         opts = list(label = "\"inspect-data2\"", exercise = "TRUE"), 
@@ -2814,8 +2829,8 @@ output$`tutorial-exercise-pipe1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "pipe1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "pipe1", code = "round(sqrt(95), digit = 1)           ## use nested functions", 
         opts = list(label = "\"pipe1\"", exercise = "TRUE"), 
@@ -2853,8 +2868,8 @@ output$`tutorial-exercise-pipe2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "pipe2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "pipe2", code = "sqrt(95) %>% round(digit = 1)        ## use %>%", 
         opts = list(label = "\"pipe2\"", exercise = "TRUE"), 
@@ -2892,8 +2907,8 @@ output$`tutorial-exercise-wrangle-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "wrangle", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "wrangle", code = "McDonalds_FullData %>%\n  select(Category, Item, Calories, Calories.from.Fat) %>% \n  filter(Calories != 0) %>%\n  rename(FatCalories = Calories.from.Fat) %>% \n  mutate(PercentFatCalories = FatCalories / Calories * 100) %>%\n  group_by(Category) %>%\n  summarise(MeanPercent = mean(PercentFatCalories)) %>%\n  arrange(desc(MeanPercent))", 
         opts = list(label = "\"wrangle\"", exercise = "TRUE"), 
@@ -2936,8 +2951,8 @@ output$`tutorial-exercise-ggplot1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ggplot1", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "ggplot1", code = "ggplot(data = McDonalds_FullData,\n       mapping = aes(x = Calories, y = Protein)) +\n  geom_point()", 
         opts = list(label = "\"ggplot1\"", exercise = "TRUE"), 
@@ -2984,8 +2999,8 @@ output$`tutorial-exercise-ggplot2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ggplot2", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
     chunks = list(list(label = "ggplot2", code = "# Filter for outlier\noutlier <- McDonalds_FullData %>% \n  filter(Protein > 75)\n\n# Adjust colors to highlight the outlier and add a label\nggplot(data = McDonalds_FullData,\n       mapping = aes(x = Calories, y = Protein)) +\n  geom_point(shape = 21, size = 1.5, color = \"grey51\") +\n  geom_point(data = outlier, \n             shape = 21, size = 1.5, color = \"indianred4\", fill = \"indianred1\") +\n  geom_text_repel(data = outlier, mapping = aes(label = Item),\n                  size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +\n  scale_x_continuous(limits = c(0, 2000), \n                     breaks = seq(from = 0, to = 2000, by = 500)) +\n  scale_y_continuous(limits = c(0, 100), \n                     breaks = seq(from = 0, to = 100, by = 25)) +\n  theme_bw() + \n  theme(panel.grid.minor = element_blank()) +\n  labs(x = \"Calories (Cal)\", y = \"Protein (g)\",\n       title = \"Protein and Calorie of Items on McDonald's Menu\")", 
         opts = list(label = "\"ggplot2\"", exercise = "TRUE"), 
@@ -3035,8 +3050,8 @@ output$`tutorial-exercise-ggplot3-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "ggplot3", global_setup = structure(c("library(learnr)", 
-"knitr::opts_chunk$set(echo = FALSE)", "library(tidyverse)", 
-"library(ggrepel)", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Filter for outlier\noutlier <- McDonalds_FullData %>% \n  filter(Protein > 75)\n\n# Adjust colors to highlight the outlier and add a label\nggplot(data = McDonalds_FullData,\n       mapping = aes(x = Calories, y = Protein)) +\n  geom_point(shape = 21, size = 1.5, color = \"grey51\") +\n  geom_point(data = outlier, \n             shape = 21, size = 1.5, color = \"indianred4\", fill = \"indianred1\") +\n  geom_text_repel(data = outlier, mapping = aes(label = Item),\n                  size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +\n  scale_x_continuous(limits = c(0, 2000), \n                     breaks = seq(from = 0, to = 2000, by = 500)) +\n  scale_y_continuous(limits = c(0, 100), \n                     breaks = seq(from = 0, to = 100, by = 25)) +\n  theme_bw() + \n  theme(panel.grid.minor = element_blank()) +\n  labs(x = \"Calories (Cal)\", y = \"Protein (g)\",\n       title = \"Protein and Calorie of Items on McDonald's Menu\")", 
     chunks = list(list(label = "ggplot2", code = "# Filter for outlier\noutlier <- McDonalds_FullData %>% \n  filter(Protein > 75)\n\n# Adjust colors to highlight the outlier and add a label\nggplot(data = McDonalds_FullData,\n       mapping = aes(x = Calories, y = Protein)) +\n  geom_point(shape = 21, size = 1.5, color = \"grey51\") +\n  geom_point(data = outlier, \n             shape = 21, size = 1.5, color = \"indianred4\", fill = \"indianred1\") +\n  geom_text_repel(data = outlier, mapping = aes(label = Item),\n                  size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +\n  scale_x_continuous(limits = c(0, 2000), \n                     breaks = seq(from = 0, to = 2000, by = 500)) +\n  scale_y_continuous(limits = c(0, 100), \n                     breaks = seq(from = 0, to = 100, by = 25)) +\n  theme_bw() + \n  theme(panel.grid.minor = element_blank()) +\n  labs(x = \"Calories (Cal)\", y = \"Protein (g)\",\n       title = \"Protein and Calorie of Items on McDonald's Menu\")", 
         opts = list(label = "\"ggplot2\"", exercise = "TRUE"), 
