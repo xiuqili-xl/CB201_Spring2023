@@ -1,0 +1,416 @@
+---
+title: "CB201 R Tutorial"
+subtitle: ""
+output: 
+  learnr::tutorial:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    progressive: false
+    allow_skip: true
+    theme: cerulean
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Learning objectives
+
+This tutorial explains in more detail the syntax, functions, and code you'll be using in the CB201 Quantitative Proteomics assignment. Specifically, this tutorial will cover:
+
+* common R commands
+* importing and processing data using tidyverse
+* visualizing data using ggplot2 (focusing on generating scatterplots)
+
+This tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R. Refer to the resource guide on Canvas.
+
+
+## Some basic syntax
+
+### Output text
+
+To output text in R, use single or double quotes. Click on the "Run code" button to run code within each block and see output.
+
+```{r output-text1, exercise=TRUE}
+"Quantitative proteomics is awesome"
+```
+
+```{r output-text2, exercise=TRUE}
+'Quantitative proteomics is awesome'
+```
+
+
+<br/>
+
+### Output number
+
+To output number, just type the number (without quotes). Run code below.
+
+```{r output-number, exercise=TRUE}
+42
+```
+
+
+<br/>
+
+### Add comments
+
+Comments can be used to explain R code. It can also be used to prevent execution when testing alternative code.
+
+Comments starts with one or more `#`. R will ignore anything that starts with `#`. Run code chunks below and compare the outputs
+
+```{r add-comments1, exercise=TRUE}
+"Quantitative proteomics is awesome"
+2+2
+3+3
+```
+
+
+```{r add-comments2, exercise=TRUE}
+# "Quantitative proteomics is awesome"
+# 2+2
+3+3           # Comment at the end of a line of code
+```
+
+
+
+## Some common R commands (Part 1)
+
+### Perform calculations
+
+At a basic level, we can use R much as we would use a calculator. Here is a list of arithmetic operator available in R.
+
+| Operator | Description |
+|:--------:|:------------|
+| +        | Addition    |
+| -        | Subtraction |
+| *        | Multiplication |
+| /        | Division    |
+| ^        | Exponent    |
+| %%       | Remainder from division |
+| %/%      | Integer division |
+
+```{r addition, exercise=TRUE}
+# Add 42 and 23
+42 + 23
+```
+
+<br/>
+
+Your turn: try some of additional arithmetic operators. _Hint: You can type directly into the code chunk below._ 
+
+```{r calculation, exercise=TRUE}
+
+```
+
+
+<br/>
+
+### Compare values
+
+Relationship operators are used to compare between values. Here is a list of relational operators in R:
+
+| Operator | Description |
+|:--------:|:------------|
+| <        | Less than   |
+| >        | Greater than |
+| <=       | Less than or equal to |
+| >=       | Greater than or equal to |
+| ==       | Equal to    |
+| !=       | Not equal to |
+
+```{r equal-to, exercise=TRUE}
+# Is 42 equal to 23?
+42 == 23
+```
+
+<br/>
+
+Your turn: try some of the relational operators.
+
+```{r compare, exercise=TRUE}
+
+```
+
+
+<br/>
+
+### Perform logical operations
+
+Logical operators are used to carry out Boolean operations like AND, OR etc.
+
+| Operator | Description |
+|:--------:|:------------|
+| !        | NOT         |
+| &        | AND (TRUE when both sides are TRUE) |
+| \|        | OR (TRUE when either side is TRUE) |
+
+```{r and, exercise=TRUE}
+# AND operator
+(42 > 23) & (6 == 5) 
+```
+
+<br/>
+
+Your turn: try some of the logical operators.
+
+```{r logical, exercise=TRUE}
+
+```
+
+
+
+## Some common R commands (Part 2)
+
+### Create variables
+
+Variables are containers for storing data values. To assign a value to a variable use `<-` or `=`
+
+Note: A variable name must start with a letter and can be a combination of letters, digits, period(.) and underscore(_). Variable names are case-sensitive.
+
+```{r create-variable1, exercise=TRUE}
+# Create some variables
+Name <- "John"
+Name <- "Doe"             ## Variable can be easily rewritten
+Age <- 40
+```
+
+
+```{r create-variable2, exercise=TRUE, exercise.setup = "create-variable1"}
+# Print variables
+Name
+Age
+```
+
+
+<br/>
+
+### Data types
+
+Variable can store data of different types. Common data types include:
+
+* __Numeric__: 42, 2.3, 7891752
+* __Character (aka string)__: “x”, “CB201 is so cool”, “FALSE”, “11.5”
+* __Logical (aka Boolean)__: TRUE or FALSE
+
+Note, there are other data types. We will not discuss those in this tutorial bc they are beyond the scope of EA2.
+
+```{r datatype, exercise=TRUE, exercise.setup = "create-variable1"}
+# Check the data type of a variable using class()
+class(Name)
+class(Age)
+```
+
+
+<br/>
+
+### A quick note on functions
+
+Up until now we’ve been creating simple objects by directly assigning a single value to an object. To create more complicated objects and perform more complex tasks, we will need functions. Think of a function as an object which contains a series of instructions to perform a specific task. For example, we used `class()` function in the last code block to find out the data type of `Name` and `Age`. For more info, watch this 4 min video on [functions](https://vimeo.com/429606516).
+
+<br/>
+
+
+### Data structure - vector
+
+You will be working with 2 common data structures in EA2: __vector__ and __data frame__. There are other data structures. We will not discuss those in this tutorial bc they are beyond the scope of EA2.
+
+__Vector__ is the most basic data structure in R. They are often defined using `c()`. `c` stands for concatenate, aka put these together as a vector.
+
+```{r vector-setup, exercise=TRUE}
+# A character vector
+Item <- c("Egg McMuffin", "Sausage McMuffin", "Baked Apple Pie", "Chocolate Chip Cookie")
+
+# Numeric vectors
+Calories <- c(300, 370, 250, 160)
+Fat <- c(13, 23, 13, 8)
+Protein <- c(17, 14, 2, 2)
+
+# A logical vector
+Meat <- c(TRUE, TRUE, FALSE, FALSE)
+```
+
+<br/>
+
+Your turn: try printing each of the vectors defined above
+
+```{r vector-print, exercise=TRUE, exercise.setup = "vector-setup"}
+
+```
+
+<br/>
+
+Note, the following functions are useful for creating a sequence of numbers.
+
+```{r sequcence1, exercise=TRUE}
+# Use the : operator
+0:20
+20:0
+```
+
+```{r sequcence2, exercise=TRUE}
+# Use the seq( ) function
+seq(from = 0, to = 20)
+seq(from = 0, to = 20, by = 2)
+```
+
+```{r sequcence3, exercise=TRUE}
+# Use the rep( ) function
+rep(1, times = 5)
+rep(c(0, 1, 2), times = 5)
+rep(c(0, 1, 2), each = 5)
+```
+
+<br/>
+
+### Some useful functions
+
+R has a number of built-in functions for data analysis. Let's use the vectors we have set up to explore what these functions do.
+
+| Function | Description |
+|:--------:|:------------|
+| length() | number of values |
+| max()    | max |
+| min()    | min |
+| sum()    | sum |
+| median() | median |
+| mean()   | mean |
+| var()    | variance |
+| sd()     | standard deviation |
+
+```{r functions, exercise=TRUE, exercise.setup = "vector-setup"}
+# Recall previously defined vector
+Calories
+
+# Find the mean of all values in Calories
+mean(Calories)
+```
+
+Your turn: try out some of the functions on our pre-defined vectors
+
+```{r functions2, exercise=TRUE, exercise.setup = "vector-setup"}
+
+```
+
+<br/>
+
+
+### Data structure - data frame
+
+A __data frame__ is used for storing data tables; it’s a list of vectors of equal length. Data frame can include columns of any data types.
+
+```{r dataframe-creation, exercise=TRUE, exercise.setup = "vector-setup"}
+# Create a data frame with previously defined vectors
+McDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)
+
+# Print data frame
+McDonalds
+```
+
+<br/>
+
+We can access single columns in a data frame using the `$`. This returns the column as a vector.
+
+```{r dataframe-subset1, exercise=TRUE, exercise.setup = "dataframe-creation"}
+# Pull out the Item column from the McDonalds data frame
+McDonalds$Item
+```
+
+<br/>
+
+We can also access one or multiple rows or columns using `df[x,y]` notation, where x specifies the row(s) you want and y specifies the column(s). For example:
+
+```{r dataframe-subset2, exercise=TRUE, exercise.setup = "dataframe-creation"}
+# Pull out the column named "Fat"
+McDonalds[ , "Fat"] 
+```
+
+```{r dataframe-subset3, exercise=TRUE, exercise.setup = "dataframe-creation"}
+# Pull out the row 1, 3, and 4
+McDonalds[c(1, 3, 4) , ] 
+```
+
+```{r dataframe-subset4, exercise=TRUE, exercise.setup = "dataframe-creation"}
+# The df[x, y] notation can also be used to exclude rows and/or columns.
+# For example, to exclude row 3
+McDonalds[-3 , ] 
+```
+
+<br/>
+
+In EA2, you will be asked to join data frames.
+
+* `rbind( )` can be used to add/join rows
+* `cbind( )` can be used to add/join columns
+
+In the following set of exercises, we will use `rbind( )` to add a few more entries to the McDonalds data frame. We will then use `cbind()` to add a few more columns with nutrition info to the McDonalds data frame. See diagram below:
+
+![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
+
+```{r rbind1, exercise=TRUE, exercise.setup = "dataframe-creation"}
+# Define an IcedTea vector
+IcedTea <- c("Iced Tea", 0, 0, 0, FALSE)
+
+# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame 
+McDonalds <- rbind(McDonalds, IcedTea)
+McDonalds
+```
+
+```{r rbind2, exercise=TRUE, exercise.setup = "rbind1"}
+# Define a drinks vector
+drinks <- data.frame(Item = c("Hot Chocolate", "Regular Iced Coffee") ,
+                     Calories = c(440, 190),
+                     Fat = c(16, 7),
+                     Protein = c(14, 1),
+                     Meat = rep(FALSE, times = 2))
+
+# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame 
+McDonalds <- rbind(McDonalds, drinks)
+McDonalds
+```
+
+```{r cbind1, exercise=TRUE, exercise.setup = "rbind2"}
+# Define a Fiber vector
+Fiber <- c(4, 4, 4, 1, 0, 1, 0)
+
+# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame 
+McDonalds <- cbind(McDonalds, Fiber)
+McDonalds
+```
+
+
+```{r cbind2, exercise=TRUE, exercise.setup = "cbind1"}
+# Define a Carbs data frame
+Carbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),
+                    Sugars = c(3, 2, 13, 15, 0, 56, 30))
+
+# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame
+McDonalds <- cbind(McDonalds, Carbs)
+McDonalds
+```
+
+<br/>
+
+
+### Some useful functions for working with data frames
+
+R has a number of useful functions for working with data frames
+
+```{r function-dataframe, exercise=TRUE, exercise.setup = "cbind2"}
+# Find number of rows in data frame
+nrow(McDonalds)
+
+# Find number of columns in data frame
+ncol(McDonalds)
+
+# Find dimensions of data frame
+dim(McDonalds)
+```
+
+
+
+
