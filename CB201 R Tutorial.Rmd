@@ -16,6 +16,7 @@ runtime: shiny_prerendered
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
+library(ggrepel)
 McDonalds_FullData <- read.csv("https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv")
 ```
 
@@ -488,9 +489,11 @@ Comma-separated file (.csv file) is one of the most commonly used  file formats 
 
 ### Inspecting data
 
-In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data frame contains the nutritional value items on McDonald's menu. **Note, this data frame has been pre-loaded for you.** Let's first inspect this data frame...
+In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data set was adapted from Kaggle dataset: [Nutrition Facts for McDonald's Menu](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts). It contains the nutritional value items on McDonald's menu. 
 
-Previously, we looked at `nrow()`, `ncol()`, `dim()`. Try using these functions to figure out the number of rows , the number of columns, and the dimension of `McDonalds_FullData`.
+**Note, this data frame has been pre-loaded for you.** Let's start with inspecting this data frame...
+
+Previously, we looked at `nrow()`, `ncol()`, `dim()`. Try using these functions to figure out the number of rows, the number of columns, and the dimension of `McDonalds_FullData`.
 
 ```{r inspect-data1, exercise=TRUE}
 
@@ -581,6 +584,9 @@ Other optional elements include:
 * __facets__: display subsets of data 
 * __coordinates__: transform axis
 
+
+### Build a basic scatter plot
+
 Now, let's build a scatter plot to show the relationship between Calories and Protein of items in `McDonalds_FullData`.
 
 ```{r ggplot1, exercise=TRUE}
@@ -589,22 +595,116 @@ ggplot(data = McDonalds_FullData,
   geom_point()
 ```
 
+```{r ggplot1-solution}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw() + 
+  theme(panel.grid.minor = element_blank()) +
+  labs(x = "Calories (Cal)", y = "Protein (g)",
+       title = "Protein and Calorie of Items on McDonald's Menu")
+```
+
 <br/>
 
 Your turn: try out the following changes to our plot. Remember, you can edit the code in the code chunks.
 
-* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead.
+* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead
 * To use empty circles for graphing (preferred when dots overlap), specify shape and size of within geom_point: `geom_point(shape = 21, size = 1.5)`
 * To add just x-axis and/or y-axis, try adding the following functions `scale_x_continuous(limits = c(0, 2000), breaks = seq(from = 0, to = 2000, by = 500))` and/or `scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 25))`
 * To adjust the theme of the graph, try adding the following function: `theme_bw()`
 * To add/edit labels, try adding: `labs(x = "Calories (Cal)", y = "Protein (g)", title = "Protein and Calorie of Items on McDonald's Menu")`
 
-For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet]()
+Click on the "Solution" button to see code with all the adjustments above. 
+
+For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
 
 
+### Highlight data points in a scatter plot
+
+Looking the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` in `ggplot()`. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
+
+```{r ggplot2, exercise=TRUE}
+# Filter for outlier
+outlier <- McDonalds_FullData %>% 
+  filter(Protein > 75)
+
+# Adjust colors to highlight the outlier and add a label
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein)) +
+  geom_point(shape = 21, size = 1.5, color = "grey51") +
+  geom_point(data = outlier, 
+             shape = 21, size = 1.5, color = "indianred4", fill = "indianred1") +
+  geom_text_repel(data = outlier, mapping = aes(label = Item),
+                  size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw() + 
+  theme(panel.grid.minor = element_blank()) +
+  labs(x = "Calories (Cal)", y = "Protein (g)",
+       title = "Protein and Calorie of Items on McDonald's Menu")
+```
 
 
+<div id="ggplot2-hint">
+`geom_point(data = outlier, shape = 21, size = 1.5, color = "indianred4", fill = "indianred1")` color codes the outlier red. `geom_text_repel(data = outlier, mapping = aes(label = Item),size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5)` labels the outlier with its item name.
+</div>
 
 
+<br/>
 
+Your turn: try highlighting all menu items that contain chicken.
+
+```{r ggplot3, exercise=TRUE, exercise.setup = "ggplot2"}
+# Hint: str_detect() can be used to find certain text patterns
+chicken <- McDonalds_FullData %>%
+  filter(str_detect(string = Item, pattern = "Chicken"))
+
+# Your turn: highlight chicken containing items
+
+```
+
+
+```{r ggplot3-solution}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein)) +
+  geom_point(shape = 21, size = 1.5, color = "grey51") +
+  geom_point(data = chicken, 
+             shape = 21, size = 1.5, color = "indianred4", fill = "indianred1") +
+  geom_text_repel(data = outlier, mapping = aes(label = Item),
+                  size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw() + 
+  theme(panel.grid.minor = element_blank()) +
+  labs(x = "Calories (Cal)", y = "Protein (g)",
+       title = "Protein and Calorie of Items on McDonald's Menu")
+```
+
+
+<br/>
+
+### Exporting your plot
+
+Use `ggsave()` function to export your plot. It defaults to saving the last plot that you displayed. It also allows you to specify different parameters of the plot. E.g., `ggsave(filename = "McDonalds_ProteinVsCalorie.tiff", bg = "white", width = 6, height = 4, units = "in", dpi = 300)`
+
+
+### Quick notes about interactive visualization
+
+In EA2 you will also create interactive visualization. Specifically, you will use the following packages:
+
+* `plotly` is a open-source library for developing interactive visualizations. It provides a number of “standard” interactions (pop-up labels, drag to pan, select to zoom, etc) automatically. Moreover, it is possible to take a `ggplot2` plot and wrap it in Plotly in order to make it interactive.
+* `htmlwidgets` provides a way to utilize a number of JavaScript interactive visualization libraries. JavaScript is the programming language used to create interactive websites (HTML files), and so is highly specialized for creating interactive experiences.
+
+Detailed description of these packages is beyond the scope of this tutorial.
+
+<br/>
 
