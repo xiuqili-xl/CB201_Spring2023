@@ -31,12 +31,14 @@ This tutorial explains in more detail the syntax, functions, and code you'll be 
 * importing and processing data using tidyverse
 * visualizing data using ggplot2 (focusing on generating scatterplots)
 
-Please note, this tutorial is not meant to be a comprehensive guide to R. If you are interested in learning R, refer to the following resources:
+__Please note, this tutorial is not meant to be a comprehensive guide to R.__ If you are interested in learning R, refer to the following resources:
 
 * [Harvard Catalyst online course: Introduction to R](https://catalyst.harvard.edu/courses/intro-to-r/)
 * [HSPH Bioinformatics Core workshops](https://bioinformatics.sph.harvard.edu/upcoming-workshops)
   + [Introduction to R self-learning on Github](https://hbctraining.github.io/Intro-to-R-flipped/schedules/links-to-lessons.html)
 * [Center for Computational Biomedicine](https://computationalbiomed.hms.harvard.edu/education/)
+  + [Introduction to data analysis with R and Bioconductor](https://computationalbiomed.hms.harvard.edu/event/bioconducter-carpentries/) (April 3rd - April 8th, 2023)
+  + [Bulk RNA-seq with R/Bioconductor](https://computationalbiomed.hms.harvard.edu/event/bulk-rna-seq-with-r-bioconductor/) (April 10th - April 14th, 2023)
 
 <br/>
 
