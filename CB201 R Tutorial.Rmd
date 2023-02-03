@@ -78,9 +78,9 @@ To output number, just type the number (without quotes). Run code below.
 
 ### Add comments
 
-Comments can be used to explain R code. It can also be used to prevent execution of alternative code when testing.
+Comments can be used to explain R code. Comments starts with one or more `#`. R will ignore anything that starts with `#`. `#` can also be used to prevent the execution of alternative code when testing.
 
-Comments starts with one or more `#`. R will ignore anything that starts with `#`. Run code chunks below and compare the outputs.
+Run code chunks below and compare the outputs.
 
 ```{r add-comments1, exercise=TRUE}
 "Quantitative proteomics is awesome"
@@ -138,7 +138,7 @@ Your turn: try some of additional arithmetic operators. _Hint: You can type dire
 
 ### Compare values
 
-Relationship operators are used to compare between values. Here is a list of relational operators in R:
+Relational operators are used to compare between values. Here is a list of relational operators in R:
 
 | Operator | Description |
 |:--------:|:------------|
@@ -162,7 +162,6 @@ Your turn: try some of the relational operators.
 
 ```
 
-
 <br/>
 
 ### Perform logical operations
@@ -184,6 +183,19 @@ Logical operators are used to carry out Boolean operations like AND, OR etc.
 **Note:** (42 > 23) is TRUE; (6 == 5) is FALSE. For AND operator to be TRUE, arguments on both sides need to be TRUE. Thus, the output for `(42 > 23) & (6 == 5)` is FALSE.
 </div>
 
+<br/>
+
+Your turn: What's your prediction for the following code chunk? Is it going to be same as the previous?
+
+```{r or, exercise=TRUE}
+# AND operator
+(42 > 23) | (6 == 5) 
+```
+
+<div id="or-hint">
+**Note:** Again, (42 > 23) is TRUE; (6 == 5) is FALSE. OR operator is true as long as one argument on either side is TRUE. Thus, the output for `(42 > 23) | (6 == 5)` is TRUE
+</div>
+
 
 <br/>
 
@@ -194,6 +206,8 @@ Your turn: try some of the logical operators.
 ```
 
 <br/>
+
+
 
 ### A quick note on functions
 
@@ -243,19 +257,23 @@ Note: A variable name must start with a letter and can be a combination of lette
 
 ```{r create-variable1, exercise=TRUE}
 # Create some variables
-Name <- "John"
-Name <- "Doe"             ## Variable can be easily rewritten
-Age <- 40
+name <- "John"
+name <- "Doe"             ## Variable can be easily overwritten
+age <- 40
 ```
+
+<div id="create-variable1-hint">
+**Hint:** Clicking on the "Run Code" button will run this code chunk and define the variables in the background. Run the next code chunk to print out the variables.
+</div>
 
 ```{r create-variable2, exercise=TRUE, exercise.setup = "create-variable1"}
 # Print variables
-Name
-Age
+name
+age
 ```
 
 <div id="create-variable2-hint">
-**Hint:** `Name` has been re-written from "John" to "Doe" in the previous code chunk.
+**Hint:** `name` has been overwritten from "John" to "Doe" in the previous code chunk.
 </div>
 
 
@@ -266,7 +284,7 @@ Age
 
 Variable can store data of different types. Common data types include:
 
-* __Numeric__: 42, 2.3, 7891752
+* __Numeric__: 42, 2.3, 7891752, -120
 * __Character (aka string)__: “x”, “CB201 is so cool”, “FALSE”, “11.5”
 * __Logical (aka Boolean)__: TRUE or FALSE
 
@@ -274,8 +292,8 @@ Note, there are other data types. We will not discuss those in this tutorial bec
 
 ```{r datatype, exercise=TRUE, exercise.setup = "create-variable1"}
 # Check the data type of a variable using the function class()
-class(Name)
-class(Age)
+class(name)
+class(age)
 ```
 
 <br/>
@@ -285,24 +303,24 @@ class(Age)
 
 You will be working with 2 common data structures in EA2: __vector__ and __data frame__. There are other data structures. We will not discuss those in this tutorial because they are beyond the scope of EA2.
 
-__Vector__ is the most basic data structure in R. They are often defined using `c()`. `c` stands for concatenate, aka put these together as a vector.
+__Vector__ is the most basic data structure in R. They are often defined using `c()`. `c` stands for concatenate, aka put these together as a vector. Vector must contain elements of the same data type.
 
 ```{r vector-setup, exercise=TRUE}
 # A character vector
-Item <- c("Egg McMuffin", "Sausage McMuffin", "Baked Apple Pie", "Chocolate Chip Cookie")
+item <- c("Egg McMuffin", "Sausage McMuffin", "Baked Apple Pie", "Chocolate Chip Cookie")
 
 # Numeric vectors
-Calories <- c(300, 370, 250, 160)
-Fat <- c(13, 23, 13, 8)
-Protein <- c(17, 14, 2, 2)
+calories <- c(300, 370, 250, 160)
+fat <- c(13, 23, 13, 8)
+protein <- c(17, 14, 2, 2)
 
 # A logical vector
-Meat <- c(TRUE, TRUE, FALSE, FALSE)
+meat <- c(TRUE, TRUE, FALSE, FALSE)
 ```
 
 <br/>
 
-Your turn: try printing each of the vectors defined above.
+Your turn: try printing each of the vectors defined above. Note, you have to run the previous code chunk prior to printing them below.
 
 ```{r vector-print, exercise=TRUE, exercise.setup = "vector-setup"}
 
@@ -310,7 +328,7 @@ Your turn: try printing each of the vectors defined above.
 
 <br/>
 
-Note, the following functions are useful for creating a sequence of numbers.
+Note, the following functions are useful for creating a sequence of numbers. Remember, if you'd like more info about any function, use `help()` or `?`.
 
 ```{r sequcence1, exercise=TRUE}
 # Use the : operator
@@ -350,10 +368,10 @@ R has a number of built-in functions for data analysis. Let's use the vectors we
 
 ```{r functions, exercise=TRUE, exercise.setup = "vector-setup"}
 # Recall previously defined vector
-Calories
+calories
 
 # Find the mean of all values in Calories
-mean(Calories)
+mean(calories)
 ```
 
 Your turn: try out some of the functions on our pre-defined vectors
@@ -370,10 +388,19 @@ Your turn: try out some of the functions on our pre-defined vectors
 A __data frame__ is used for storing data tables; it’s a list of vectors of equal length. Data frame can include columns of any data types.
 
 ```{r dataframe-creation, exercise=TRUE, exercise.setup = "vector-setup"}
-# Create a data frame with previously defined vectors
-McDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)
+# Remember we previously defined several vectors
+item <- c("Egg McMuffin", "Sausage McMuffin", "Baked Apple Pie", "Chocolate Chip Cookie")
+calories <- c(300, 370, 250, 160)
+fat <- c(13, 23, 13, 8)
+protein <- c(17, 14, 2, 2)
+meat <- c(TRUE, TRUE, FALSE, FALSE)
 
-# Print data frame
+# Create a data frame with previously defined vectors
+McDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)
+
+# Print data frame. 
+# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. 
+# These columns store values from our previously defined vector
 McDonalds
 ```
 
@@ -417,22 +444,13 @@ In the following set of code chunks, we will use `rbind( )` to add a few more en
 
 ![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
 
-```{r rbind1, exercise=TRUE, exercise.setup = "dataframe-creation"}
-# Define an IcedTea vector
-IcedTea <- c("Iced Tea", 0, 0, 0, FALSE)
-
-# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame 
-McDonalds <- rbind(McDonalds, IcedTea)
-McDonalds
-```
-
-```{r rbind2, exercise=TRUE, exercise.setup = "rbind1"}
+```{r rbind2, exercise=TRUE, exercise.setup = "dataframe-creation"}
 # Define a drinks vector
-drinks <- data.frame(Item = c("Hot Chocolate", "Regular Iced Coffee") ,
-                     Calories = c(440, 190),
-                     Fat = c(16, 7),
-                     Protein = c(14, 1),
-                     Meat = rep(FALSE, times = 2))
+drinks <- data.frame(Item = c("Iced Tea", "Hot Chocolate", "Regular Iced Coffee") ,
+                     Calories = c(0, 440, 190),
+                     Fat = c(0, 16, 7),
+                     Protein = c(0, 14, 1),
+                     Meat = rep(FALSE, times = 3))
 
 # Use rbind() to add the drinks data frame as new rows to the McDonalds data frame 
 McDonalds <- rbind(McDonalds, drinks)
@@ -441,21 +459,21 @@ McDonalds
 
 ```{r cbind1, exercise=TRUE, exercise.setup = "rbind2"}
 # Define a Fiber vector
-Fiber <- c(4, 4, 4, 1, 0, 1, 0)
+fiber <- c(4, 4, 4, 1, 0, 1, 0)
 
-# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame 
-McDonalds <- cbind(McDonalds, Fiber)
+# Use cbind() to add the fiber vector as a new column to the McDonalds data frame 
+McDonalds <- cbind(McDonalds, Fiber = fiber)
 McDonalds
 ```
 
 
 ```{r cbind2, exercise=TRUE, exercise.setup = "cbind1"}
-# Define a Carbs data frame
-Carbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),
+# Define a carbs data frame
+carbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),
                     Sugars = c(3, 2, 13, 15, 0, 56, 30))
 
-# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame
-McDonalds <- cbind(McDonalds, Carbs)
+# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame
+McDonalds <- cbind(McDonalds, carbs)
 McDonalds
 ```
 
@@ -486,12 +504,12 @@ dim(McDonalds)
 
 Packages are the units of reproducible R code. They include R functions, the documentation that describes how to use those functions, and sample data. By default, R installs a set of packages during installation. Others need to be installed and loaded prior to use. These packages are available for download from [CRAN](https://CRAN.R-project.org/) and other repositories such as [Bioconductor](https://www.bioconductor.org/).
 
-* To install packages use code such as `install.packages("tidyverse")`. 
-* To load packages use code such as `library(tidyverse)`.
+* To install packages use code such as `install.packages("readxl")`. 
+* To load packages use code such as `library(readxl)`.
 * To check out what packages are installed already use `installed.packages()`.
 * To check if any packages need updating use `old.packages()`.
 
-[Tidyverse](https://www.tidyverse.org/) is a collection packages useful for data science. For EA2, we will use the packages `dplyr` and `ggplot2` from `tidyverse`for data processing and data visualization, respectively.
+In EA2, we'll be using [Tidyverse](https://www.tidyverse.org/). Tidyverse is a collection packages useful for data science. In particular, we will use the packages `dplyr` and `ggplot2` from `tidyverse`for data processing and data visualization, respectively.
 
 
 ### Inspecting your workspace
@@ -665,7 +683,7 @@ For more adjustments you can make with ggplot2, see [ggplot2 documentation](http
 
 ### Highlight data points in a scatter plot
 
-Looking the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` to generate the graph. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
+Looking at the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` to generate the graph. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
 
 ```{r ggplot2, exercise=TRUE}
 # Filter for outlier

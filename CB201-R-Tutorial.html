@@ -188,11 +188,11 @@ data-lines="0">
 </div>
 <div id="section-add-comments" class="section level3">
 <h3>Add comments</h3>
-<p>Comments can be used to explain R code. It can also be used to
-prevent execution of alternative code when testing.</p>
-<p>Comments starts with one or more <code>#</code>. R will ignore
-anything that starts with <code>#</code>. Run code chunks below and
-compare the outputs.</p>
+<p>Comments can be used to explain R code. Comments starts with one or
+more <code>#</code>. R will ignore anything that starts with
+<code>#</code>. <code>#</code> can also be used to prevent the execution
+of alternative code when testing.</p>
+<p>Run code chunks below and compare the outputs.</p>
 <div class="tutorial-exercise" data-label="add-comments1"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
@@ -278,7 +278,7 @@ data-lines="0">
 </div>
 <div id="section-compare-values" class="section level3">
 <h3>Compare values</h3>
-<p>Relationship operators are used to compare between values. Here is a
+<p>Relational operators are used to compare between values. Here is a
 list of relational operators in R:</p>
 <table>
 <thead>
@@ -366,6 +366,21 @@ AND operator to be TRUE, arguments on both sides need to be TRUE. Thus,
 the output for <code>(42 &gt; 23) &amp; (6 == 5)</code> is FALSE.</p>
 </div>
 <p><br/></p>
+<p>Your turn: What’s your prediction for the following code chunk? Is it
+going to be same as the previous?</p>
+<div class="tutorial-exercise" data-label="or" data-completion="1"
+data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># AND operator
+(42 &gt; 23) | (6 == 5) </code></pre>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div id="section-or-hint">
+<p><strong>Note:</strong> Again, (42 &gt; 23) is TRUE; (6 == 5) is
+FALSE. OR operator is true as long as one argument on either side is
+TRUE. Thus, the output for <code>(42 &gt; 23) | (6 == 5)</code> is
+TRUE</p>
+</div>
+<p><br/></p>
 <p>Your turn: try some of the logical operators.</p>
 <div class="tutorial-exercise" data-label="logical" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
@@ -437,21 +452,26 @@ names are case-sensitive.</p>
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <pre class="text"><code># Create some variables
-Name &lt;- &quot;John&quot;
-Name &lt;- &quot;Doe&quot;             ## Variable can be easily rewritten
-Age &lt;- 40</code></pre>
+name &lt;- &quot;John&quot;
+name &lt;- &quot;Doe&quot;             ## Variable can be easily overwritten
+age &lt;- 40</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div id="section-create-variable1-hint">
+<p><strong>Hint:</strong> Clicking on the “Run Code” button will run
+this code chunk and define the variables in the background. Run the next
+code chunk to print out the variables.</p>
 </div>
 <div class="tutorial-exercise" data-label="create-variable2"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <pre class="text"><code># Print variables
-Name
-Age</code></pre>
+name
+age</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <div id="section-create-variable2-hint">
-<p><strong>Hint:</strong> <code>Name</code> has been re-written from
+<p><strong>Hint:</strong> <code>name</code> has been overwritten from
 “John” to “Doe” in the previous code chunk.</p>
 </div>
 <p><br/></p>
@@ -461,7 +481,7 @@ Age</code></pre>
 <p>Variable can store data of different types. Common data types
 include:</p>
 <ul>
-<li><strong>Numeric</strong>: 42, 2.3, 7891752</li>
+<li><strong>Numeric</strong>: 42, 2.3, 7891752, -120</li>
 <li><strong>Character (aka string)</strong>: “x”, “CB201 is so cool”,
 “FALSE”, “11.5”</li>
 <li><strong>Logical (aka Boolean)</strong>: TRUE or FALSE</li>
@@ -471,8 +491,8 @@ tutorial because they are beyond the scope of EA2.</p>
 <div class="tutorial-exercise" data-label="datatype" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Check the data type of a variable using the function class()
-class(Name)
-class(Age)</code></pre>
+class(name)
+class(age)</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <p><br/></p>
@@ -485,24 +505,26 @@ data structures. We will not discuss those in this tutorial because they
 are beyond the scope of EA2.</p>
 <p><strong>Vector</strong> is the most basic data structure in R. They
 are often defined using <code>c()</code>. <code>c</code> stands for
-concatenate, aka put these together as a vector.</p>
+concatenate, aka put these together as a vector. Vector must contain
+elements of the same data type.</p>
 <div class="tutorial-exercise" data-label="vector-setup"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <pre class="text"><code># A character vector
-Item &lt;- c(&quot;Egg McMuffin&quot;, &quot;Sausage McMuffin&quot;, &quot;Baked Apple Pie&quot;, &quot;Chocolate Chip Cookie&quot;)
+item &lt;- c(&quot;Egg McMuffin&quot;, &quot;Sausage McMuffin&quot;, &quot;Baked Apple Pie&quot;, &quot;Chocolate Chip Cookie&quot;)
 
 # Numeric vectors
-Calories &lt;- c(300, 370, 250, 160)
-Fat &lt;- c(13, 23, 13, 8)
-Protein &lt;- c(17, 14, 2, 2)
+calories &lt;- c(300, 370, 250, 160)
+fat &lt;- c(13, 23, 13, 8)
+protein &lt;- c(17, 14, 2, 2)
 
 # A logical vector
-Meat &lt;- c(TRUE, TRUE, FALSE, FALSE)</code></pre>
+meat &lt;- c(TRUE, TRUE, FALSE, FALSE)</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <p><br/></p>
-<p>Your turn: try printing each of the vectors defined above.</p>
+<p>Your turn: try printing each of the vectors defined above. Note, you
+have to run the previous code chunk prior to printing them below.</p>
 <div class="tutorial-exercise" data-label="vector-print"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
@@ -510,7 +532,8 @@ data-lines="0">
 </div>
 <p><br/></p>
 <p>Note, the following functions are useful for creating a sequence of
-numbers.</p>
+numbers. Remember, if you’d like more info about any function, use
+<code>help()</code> or <code>?</code>.</p>
 <div class="tutorial-exercise" data-label="sequcence1"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
@@ -588,10 +611,10 @@ vectors we have set up to explore what these functions do.</p>
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
 <pre class="text"><code># Recall previously defined vector
-Calories
+calories
 
 # Find the mean of all values in Calories
-mean(Calories)</code></pre>
+mean(calories)</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <p>Your turn: try out some of the functions on our pre-defined
@@ -611,10 +634,19 @@ data types.</p>
 <div class="tutorial-exercise" data-label="dataframe-creation"
 data-completion="1" data-diagnostics="1" data-startover="1"
 data-lines="0">
-<pre class="text"><code># Create a data frame with previously defined vectors
-McDonalds &lt;- data.frame(Item, Calories, Fat, Protein, Meat)
+<pre class="text"><code># Remember we previously defined several vectors
+item &lt;- c(&quot;Egg McMuffin&quot;, &quot;Sausage McMuffin&quot;, &quot;Baked Apple Pie&quot;, &quot;Chocolate Chip Cookie&quot;)
+calories &lt;- c(300, 370, 250, 160)
+fat &lt;- c(13, 23, 13, 8)
+protein &lt;- c(17, 14, 2, 2)
+meat &lt;- c(TRUE, TRUE, FALSE, FALSE)
 
-# Print data frame
+# Create a data frame with previously defined vectors
+McDonalds &lt;- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)
+
+# Print data frame. 
+# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. 
+# These columns store values from our previously defined vector
 McDonalds</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -667,24 +699,14 @@ with nutrition info to the McDonalds data frame. See diagram below:</p>
 <p><img
 src="https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png"
 style="width:90.0%" /></p>
-<div class="tutorial-exercise" data-label="rbind1" data-completion="1"
-data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># Define an IcedTea vector
-IcedTea &lt;- c(&quot;Iced Tea&quot;, 0, 0, 0, FALSE)
-
-# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame 
-McDonalds &lt;- rbind(McDonalds, IcedTea)
-McDonalds</code></pre>
-<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
-</div>
 <div class="tutorial-exercise" data-label="rbind2" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Define a drinks vector
-drinks &lt;- data.frame(Item = c(&quot;Hot Chocolate&quot;, &quot;Regular Iced Coffee&quot;) ,
-                     Calories = c(440, 190),
-                     Fat = c(16, 7),
-                     Protein = c(14, 1),
-                     Meat = rep(FALSE, times = 2))
+drinks &lt;- data.frame(Item = c(&quot;Iced Tea&quot;, &quot;Hot Chocolate&quot;, &quot;Regular Iced Coffee&quot;) ,
+                     Calories = c(0, 440, 190),
+                     Fat = c(0, 16, 7),
+                     Protein = c(0, 14, 1),
+                     Meat = rep(FALSE, times = 3))
 
 # Use rbind() to add the drinks data frame as new rows to the McDonalds data frame 
 McDonalds &lt;- rbind(McDonalds, drinks)
@@ -694,21 +716,21 @@ McDonalds</code></pre>
 <div class="tutorial-exercise" data-label="cbind1" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Define a Fiber vector
-Fiber &lt;- c(4, 4, 4, 1, 0, 1, 0)
+fiber &lt;- c(4, 4, 4, 1, 0, 1, 0)
 
-# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame 
-McDonalds &lt;- cbind(McDonalds, Fiber)
+# Use cbind() to add the fiber vector as a new column to the McDonalds data frame 
+McDonalds &lt;- cbind(McDonalds, Fiber = fiber)
 McDonalds</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <div class="tutorial-exercise" data-label="cbind2" data-completion="1"
 data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># Define a Carbs data frame
-Carbs &lt;- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),
+<pre class="text"><code># Define a carbs data frame
+carbs &lt;- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),
                     Sugars = c(3, 2, 13, 15, 0, 56, 30))
 
-# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame
-McDonalds &lt;- cbind(McDonalds, Carbs)
+# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame
+McDonalds &lt;- cbind(McDonalds, carbs)
 McDonalds</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -747,17 +769,17 @@ href="https://CRAN.R-project.org/">CRAN</a> and other repositories such
 as <a href="https://www.bioconductor.org/">Bioconductor</a>.</p>
 <ul>
 <li>To install packages use code such as
-<code>install.packages("tidyverse")</code>.</li>
-<li>To load packages use code such as
-<code>library(tidyverse)</code>.</li>
+<code>install.packages("readxl")</code>.</li>
+<li>To load packages use code such as <code>library(readxl)</code>.</li>
 <li>To check out what packages are installed already use
 <code>installed.packages()</code>.</li>
 <li>To check if any packages need updating use
 <code>old.packages()</code>.</li>
 </ul>
-<p><a href="https://www.tidyverse.org/">Tidyverse</a> is a collection
-packages useful for data science. For EA2, we will use the packages
-<code>dplyr</code> and <code>ggplot2</code> from
+<p>In EA2, we’ll be using <a
+href="https://www.tidyverse.org/">Tidyverse</a>. Tidyverse is a
+collection packages useful for data science. In particular, we will use
+the packages <code>dplyr</code> and <code>ggplot2</code> from
 <code>tidyverse</code>for data processing and data visualization,
 respectively.</p>
 </div>
@@ -1027,8 +1049,8 @@ href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">chea
 <div id="section-highlight-data-points-in-a-scatter-plot"
 class="section level3">
 <h3>Highlight data points in a scatter plot</h3>
-<p>Looking the scatter plot above, we see that there is one outlier. In
-this section, we will highlight that outlier and add a label. We will
+<p>Looking at the scatter plot above, we see that there is one outlier.
+In this section, we will highlight that outlier and add a label. We will
 first create a data frame with just the outlier and use
 <code>McDonalds_FullData</code> and <code>outlier</code> to generate the
 graph. Compare the code chunk below with the code chunk above – what new
@@ -1551,6 +1573,45 @@ learnr:::store_exercise_cache(structure(list(label = "and", global_setup = struc
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-or-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-or-code-editor`)), session)
+output$`tutorial-exercise-or-output` <- renderUI({
+  `tutorial-exercise-or-result`()
+})
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "or", global_setup = structure(c("library(learnr)", 
+"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
+"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
+), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
+    chunks = list(list(label = "or", code = "# AND operator\n(42 > 23) | (6 == 5) ", 
+        opts = list(label = "\"or\"", exercise = "TRUE"), engine = "r")), 
+    code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "CB201-R-Tutorial_cache/html/", cache.vars = NULL, 
+        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
+        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
+        fig.align = "default", fig.path = "CB201-R-Tutorial_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, label = "or", exercise = TRUE, code = c("# AND operator", 
+        "(42 > 23) | (6 == 5) "), out.width.px = 624, out.height.px = 384, 
+        params.src = "or, exercise=TRUE", fig.num = 0, exercise.df_print = "paged", 
+        exercise.checker = "NULL"), engine = "r", version = "4"), class = c("r", 
+"tutorial_exercise")))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-logical-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-logical-code-editor`)), session)
 output$`tutorial-exercise-logical-output` <- renderUI({
   `tutorial-exercise-logical-result`()
@@ -1842,7 +1903,7 @@ learnr:::store_exercise_cache(structure(list(label = "create-variable1", global_
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
+    chunks = list(list(label = "create-variable1", code = "# Create some variables\nname <- \"John\"\nname <- \"Doe\"             ## Variable can be easily overwritten\nage <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
     check = NULL, solution = NULL, tests = NULL, options = list(
@@ -1862,9 +1923,9 @@ learnr:::store_exercise_cache(structure(list(label = "create-variable1", global_
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "create-variable1", exercise = TRUE, 
-        code = c("# Create some variables", "Name <- \"John\"", 
-        "Name <- \"Doe\"             ## Variable can be easily rewritten", 
-        "Age <- 40"), out.width.px = 624, out.height.px = 384, 
+        code = c("# Create some variables", "name <- \"John\"", 
+        "name <- \"Doe\"             ## Variable can be easily overwritten", 
+        "age <- 40"), out.width.px = 624, out.height.px = 384, 
         params.src = "create-variable1, exercise=TRUE", fig.num = 0, 
         exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1883,10 +1944,10 @@ output$`tutorial-exercise-create-variable2-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "create-variable2", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
-    chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nname <- \"John\"\nname <- \"Doe\"             ## Variable can be easily overwritten\nage <- 40", 
+    chunks = list(list(label = "create-variable1", code = "# Create some variables\nname <- \"John\"\nname <- \"Doe\"             ## Variable can be easily overwritten\nage <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "create-variable2", code = "# Print variables\nName\nAge", 
+        engine = "r"), list(label = "create-variable2", code = "# Print variables\nname\nage", 
         opts = list(label = "\"create-variable2\"", exercise = "TRUE", 
             exercise.setup = "\"create-variable1\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -1908,7 +1969,7 @@ learnr:::store_exercise_cache(structure(list(label = "create-variable2", global_
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "create-variable2", exercise = TRUE, 
         exercise.setup = "create-variable1", code = c("# Print variables", 
-        "Name", "Age"), out.width.px = 624, out.height.px = 384, 
+        "name", "age"), out.width.px = 624, out.height.px = 384, 
         params.src = "create-variable2, exercise=TRUE, exercise.setup = \"create-variable1\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1927,10 +1988,10 @@ output$`tutorial-exercise-datatype-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "datatype", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
-    chunks = list(list(label = "create-variable1", code = "# Create some variables\nName <- \"John\"\nName <- \"Doe\"             ## Variable can be easily rewritten\nAge <- 40", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# Create some variables\nname <- \"John\"\nname <- \"Doe\"             ## Variable can be easily overwritten\nage <- 40", 
+    chunks = list(list(label = "create-variable1", code = "# Create some variables\nname <- \"John\"\nname <- \"Doe\"             ## Variable can be easily overwritten\nage <- 40", 
         opts = list(label = "\"create-variable1\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "datatype", code = "# Check the data type of a variable using the function class()\nclass(Name)\nclass(Age)", 
+        engine = "r"), list(label = "datatype", code = "# Check the data type of a variable using the function class()\nclass(name)\nclass(age)", 
         opts = list(label = "\"datatype\"", exercise = "TRUE", 
             exercise.setup = "\"create-variable1\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -1952,7 +2013,7 @@ learnr:::store_exercise_cache(structure(list(label = "datatype", global_setup = 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "datatype", exercise = TRUE, 
         exercise.setup = "create-variable1", code = c("# Check the data type of a variable using the function class()", 
-        "class(Name)", "class(Age)"), out.width.px = 624, out.height.px = 384, 
+        "class(name)", "class(age)"), out.width.px = 624, out.height.px = 384, 
         params.src = "datatype, exercise=TRUE, exercise.setup = \"create-variable1\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -1972,7 +2033,7 @@ learnr:::store_exercise_cache(structure(list(label = "vector-setup", global_setu
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
 ), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
         engine = "r")), code_check = NULL, error_check = NULL, 
     check = NULL, solution = NULL, tests = NULL, options = list(
@@ -1992,10 +2053,10 @@ learnr:::store_exercise_cache(structure(list(label = "vector-setup", global_setu
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "vector-setup", exercise = TRUE, 
-        code = c("# A character vector", "Item <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")", 
-        "", "# Numeric vectors", "Calories <- c(300, 370, 250, 160)", 
-        "Fat <- c(13, 23, 13, 8)", "Protein <- c(17, 14, 2, 2)", 
-        "", "# A logical vector", "Meat <- c(TRUE, TRUE, FALSE, FALSE)"
+        code = c("# A character vector", "item <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")", 
+        "", "# Numeric vectors", "calories <- c(300, 370, 250, 160)", 
+        "fat <- c(13, 23, 13, 8)", "protein <- c(17, 14, 2, 2)", 
+        "", "# A logical vector", "meat <- c(TRUE, TRUE, FALSE, FALSE)"
         ), out.width.px = 624, out.height.px = 384, params.src = "vector-setup, exercise=TRUE", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -2014,8 +2075,8 @@ output$`tutorial-exercise-vector-print-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "vector-print", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
         engine = "r"), list(label = "vector-print", code = "", 
         opts = list(label = "\"vector-print\"", exercise = "TRUE", 
@@ -2179,10 +2240,10 @@ output$`tutorial-exercise-functions-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "functions", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "functions", code = "# Recall previously defined vector\nCalories\n\n# Find the mean of all values in Calories\nmean(Calories)", 
+        engine = "r"), list(label = "functions", code = "# Recall previously defined vector\ncalories\n\n# Find the mean of all values in Calories\nmean(calories)", 
         opts = list(label = "\"functions\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -2204,8 +2265,8 @@ learnr:::store_exercise_cache(structure(list(label = "functions", global_setup =
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "functions", exercise = TRUE, 
         exercise.setup = "vector-setup", code = c("# Recall previously defined vector", 
-        "Calories", "", "# Find the mean of all values in Calories", 
-        "mean(Calories)"), out.width.px = 624, out.height.px = 384, 
+        "calories", "", "# Find the mean of all values in Calories", 
+        "mean(calories)"), out.width.px = 624, out.height.px = 384, 
         params.src = "functions, exercise=TRUE, exercise.setup = \"vector-setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -2224,8 +2285,8 @@ output$`tutorial-exercise-functions2-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "functions2", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
         engine = "r"), list(label = "functions2", code = "", 
         opts = list(label = "\"functions2\"", exercise = "TRUE", 
@@ -2267,10 +2328,10 @@ output$`tutorial-exercise-dataframe-creation-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "dataframe-creation", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -2291,10 +2352,16 @@ learnr:::store_exercise_cache(structure(list(label = "dataframe-creation", globa
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "dataframe-creation", exercise = TRUE, 
-        exercise.setup = "vector-setup", code = c("# Create a data frame with previously defined vectors", 
-        "McDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)", 
-        "", "# Print data frame", "McDonalds"), out.width.px = 624, 
-        out.height.px = 384, params.src = "dataframe-creation, exercise=TRUE, exercise.setup = \"vector-setup\"", 
+        exercise.setup = "vector-setup", code = c("# Remember we previously defined several vectors", 
+        "item <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")", 
+        "calories <- c(300, 370, 250, 160)", "fat <- c(13, 23, 13, 8)", 
+        "protein <- c(17, 14, 2, 2)", "meat <- c(TRUE, TRUE, FALSE, FALSE)", 
+        "", "# Create a data frame with previously defined vectors", 
+        "McDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)", 
+        "", "# Print data frame. ", "# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. ", 
+        "# These columns store values from our previously defined vector", 
+        "McDonalds"), out.width.px = 624, out.height.px = 384, 
+        params.src = "dataframe-creation, exercise=TRUE, exercise.setup = \"vector-setup\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -2312,10 +2379,10 @@ output$`tutorial-exercise-dataframe-subset1-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset1", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
         list(label = "dataframe-subset1", code = "# Pull out the Item column from the McDonalds data frame\nMcDonalds$Item", 
@@ -2359,10 +2426,10 @@ output$`tutorial-exercise-dataframe-subset2-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset2", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
         list(label = "dataframe-subset2", code = "# Pull out the column named \"Fat\"\nMcDonalds[ , \"Fat\"] ", 
@@ -2406,10 +2473,10 @@ output$`tutorial-exercise-dataframe-subset3-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset3", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
         list(label = "dataframe-subset3", code = "# Pull out the row 1, 3, and 4\nMcDonalds[c(1, 3, 4) , ] ", 
@@ -2453,10 +2520,10 @@ output$`tutorial-exercise-dataframe-subset4-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "dataframe-subset4", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
         list(label = "dataframe-subset4", code = "# The df[x, y] notation can also be used to exclude rows and/or columns.\n# For example, to exclude row 3\nMcDonalds[-3 , ] ", 
@@ -2489,25 +2556,25 @@ learnr:::store_exercise_cache(structure(list(label = "dataframe-subset4", global
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-rbind1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-rbind1-code-editor`)), session)
-output$`tutorial-exercise-rbind1-output` <- renderUI({
-  `tutorial-exercise-rbind1-result`()
+`tutorial-exercise-rbind2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-rbind2-code-editor`)), session)
+output$`tutorial-exercise-rbind2-output` <- renderUI({
+  `tutorial-exercise-rbind2-result`()
 })
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "rbind1", global_setup = structure(c("library(learnr)", 
+learnr:::store_exercise_cache(structure(list(label = "rbind2", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
-        list(label = "rbind1", code = "# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-            opts = list(label = "\"rbind1\"", exercise = "TRUE", 
+        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
+            opts = list(label = "\"rbind2\"", exercise = "TRUE", 
                 exercise.setup = "\"dataframe-creation\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
     tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
@@ -2526,65 +2593,14 @@ learnr:::store_exercise_cache(structure(list(label = "rbind1", global_setup = st
         aniopts = "controls,loop", warning = TRUE, error = FALSE, 
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
-        max.print = 1000, label = "rbind1", exercise = TRUE, 
-        exercise.setup = "dataframe-creation", code = c("# Define an IcedTea vector", 
-        "IcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)", "", "# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame ", 
-        "McDonalds <- rbind(McDonalds, IcedTea)", "McDonalds"
-        ), out.width.px = 624, out.height.px = 384, params.src = "rbind1, exercise=TRUE, exercise.setup = \"dataframe-creation\"", 
-        fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
-    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
-)))
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-rbind2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-rbind2-code-editor`)), session)
-output$`tutorial-exercise-rbind2-output` <- renderUI({
-  `tutorial-exercise-rbind2-result`()
-})
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::store_exercise_cache(structure(list(label = "rbind2", global_setup = structure(c("library(learnr)", 
-"library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
-"", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
-        opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
-        opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
-            exercise.setup = "\"vector-setup\""), engine = "r"), 
-        list(label = "rbind1", code = "# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-            opts = list(label = "\"rbind1\"", exercise = "TRUE", 
-                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
-        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
-            opts = list(label = "\"rbind2\"", exercise = "TRUE", 
-                exercise.setup = "\"rbind1\""), engine = "r")), 
-    code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
-    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
-        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
-        comment = NA, highlight = FALSE, size = "normalsize", 
-        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
-        cache.path = "CB201-R-Tutorial_cache/html/", cache.vars = NULL, 
-        cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-        cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-        fig.align = "default", fig.path = "CB201-R-Tutorial_files/figure-html/", 
-        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
-        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
-        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
-        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
-        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
-        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
-        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "rbind2", exercise = TRUE, 
-        exercise.setup = "rbind1", code = c("# Define a drinks vector", 
-        "drinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,", 
-        "                     Calories = c(440, 190),", "                     Fat = c(16, 7),", 
-        "                     Protein = c(14, 1),", "                     Meat = rep(FALSE, times = 2))", 
+        exercise.setup = "dataframe-creation", code = c("# Define a drinks vector", 
+        "drinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,", 
+        "                     Calories = c(0, 440, 190),", "                     Fat = c(0, 16, 7),", 
+        "                     Protein = c(0, 14, 1),", "                     Meat = rep(FALSE, times = 3))", 
         "", "# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame ", 
         "McDonalds <- rbind(McDonalds, drinks)", "McDonalds"), 
-        out.width.px = 624, out.height.px = 384, params.src = "rbind2, exercise=TRUE, exercise.setup = \"rbind1\"", 
+        out.width.px = 624, out.height.px = 384, params.src = "rbind2, exercise=TRUE, exercise.setup = \"dataframe-creation\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -2602,19 +2618,16 @@ output$`tutorial-exercise-cbind1-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "cbind1", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
-        list(label = "rbind1", code = "# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-            opts = list(label = "\"rbind1\"", exercise = "TRUE", 
-                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
-        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
+        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
             opts = list(label = "\"rbind2\"", exercise = "TRUE", 
-                exercise.setup = "\"rbind1\""), engine = "r"), 
-        list(label = "cbind1", code = "# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds", 
+                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
+        list(label = "cbind1", code = "# Define a Fiber vector\nfiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber = fiber)\nMcDonalds", 
             opts = list(label = "\"cbind1\"", exercise = "TRUE", 
                 exercise.setup = "\"rbind2\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -2636,9 +2649,9 @@ learnr:::store_exercise_cache(structure(list(label = "cbind1", global_setup = st
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "cbind1", exercise = TRUE, 
         exercise.setup = "rbind2", code = c("# Define a Fiber vector", 
-        "Fiber <- c(4, 4, 4, 1, 0, 1, 0)", "", "# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame ", 
-        "McDonalds <- cbind(McDonalds, Fiber)", "McDonalds"), 
-        out.width.px = 624, out.height.px = 384, params.src = "cbind1, exercise=TRUE, exercise.setup = \"rbind2\"", 
+        "fiber <- c(4, 4, 4, 1, 0, 1, 0)", "", "# Use cbind() to add the fiber vector as a new column to the McDonalds data frame ", 
+        "McDonalds <- cbind(McDonalds, Fiber = fiber)", "McDonalds"
+        ), out.width.px = 624, out.height.px = 384, params.src = "cbind1, exercise=TRUE, exercise.setup = \"rbind2\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
@@ -2656,22 +2669,19 @@ output$`tutorial-exercise-cbind2-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "cbind2", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nfiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber = fiber)\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
-        list(label = "rbind1", code = "# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-            opts = list(label = "\"rbind1\"", exercise = "TRUE", 
-                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
-        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
+        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
             opts = list(label = "\"rbind2\"", exercise = "TRUE", 
-                exercise.setup = "\"rbind1\""), engine = "r"), 
-        list(label = "cbind1", code = "# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds", 
+                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
+        list(label = "cbind1", code = "# Define a Fiber vector\nfiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber = fiber)\nMcDonalds", 
             opts = list(label = "\"cbind1\"", exercise = "TRUE", 
                 exercise.setup = "\"rbind2\""), engine = "r"), 
-        list(label = "cbind2", code = "# Define a Carbs data frame\nCarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, Carbs)\nMcDonalds", 
+        list(label = "cbind2", code = "# Define a carbs data frame\ncarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, carbs)\nMcDonalds", 
             opts = list(label = "\"cbind2\"", exercise = "TRUE", 
                 exercise.setup = "\"cbind1\""), engine = "r")), 
     code_check = NULL, error_check = NULL, check = NULL, solution = NULL, 
@@ -2692,11 +2702,11 @@ learnr:::store_exercise_cache(structure(list(label = "cbind2", global_setup = st
         message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
         engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
         max.print = 1000, label = "cbind2", exercise = TRUE, 
-        exercise.setup = "cbind1", code = c("# Define a Carbs data frame", 
-        "Carbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),", 
+        exercise.setup = "cbind1", code = c("# Define a carbs data frame", 
+        "carbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),", 
         "                    Sugars = c(3, 2, 13, 15, 0, 56, 30))", 
-        "", "# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame", 
-        "McDonalds <- cbind(McDonalds, Carbs)", "McDonalds"), 
+        "", "# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame", 
+        "McDonalds <- cbind(McDonalds, carbs)", "McDonalds"), 
         out.width.px = 624, out.height.px = 384, params.src = "cbind2, exercise=TRUE, exercise.setup = \"cbind1\"", 
         fig.num = 0, exercise.df_print = "paged", exercise.checker = "NULL"), 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
@@ -2715,22 +2725,19 @@ output$`tutorial-exercise-function-dataframe-output` <- renderUI({
 learnr:::store_exercise_cache(structure(list(label = "function-dataframe", global_setup = structure(c("library(learnr)", 
 "library(tidyverse)", "library(ggrepel)", "", "knitr::opts_chunk$set(echo = FALSE)", 
 "", "McDonalds_FullData <- read.csv(\"https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv\")"
-), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds\n# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds\n# Define a Carbs data frame\nCarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, Carbs)\nMcDonalds", 
-    chunks = list(list(label = "vector-setup", code = "# A character vector\nItem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\nCalories <- c(300, 370, 250, 160)\nFat <- c(13, 23, 13, 8)\nProtein <- c(17, 14, 2, 2)\n\n# A logical vector\nMeat <- c(TRUE, TRUE, FALSE, FALSE)", 
+), chunk_opts = list(label = "setup", include = FALSE)), setup = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds\n# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds\n# Define a Fiber vector\nfiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber = fiber)\nMcDonalds\n# Define a carbs data frame\ncarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, carbs)\nMcDonalds", 
+    chunks = list(list(label = "vector-setup", code = "# A character vector\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\n\n# Numeric vectors\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\n\n# A logical vector\nmeat <- c(TRUE, TRUE, FALSE, FALSE)", 
         opts = list(label = "\"vector-setup\"", exercise = "TRUE"), 
-        engine = "r"), list(label = "dataframe-creation", code = "# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item, Calories, Fat, Protein, Meat)\n\n# Print data frame\nMcDonalds", 
+        engine = "r"), list(label = "dataframe-creation", code = "# Remember we previously defined several vectors\nitem <- c(\"Egg McMuffin\", \"Sausage McMuffin\", \"Baked Apple Pie\", \"Chocolate Chip Cookie\")\ncalories <- c(300, 370, 250, 160)\nfat <- c(13, 23, 13, 8)\nprotein <- c(17, 14, 2, 2)\nmeat <- c(TRUE, TRUE, FALSE, FALSE)\n\n# Create a data frame with previously defined vectors\nMcDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)\n\n# Print data frame. \n# Notice: the column names are Item, Calorie, Fat, Protein, and Meat. \n# These columns store values from our previously defined vector\nMcDonalds", 
         opts = list(label = "\"dataframe-creation\"", exercise = "TRUE", 
             exercise.setup = "\"vector-setup\""), engine = "r"), 
-        list(label = "rbind1", code = "# Define an IcedTea vector\nIcedTea <- c(\"Iced Tea\", 0, 0, 0, FALSE)\n\n# Use rbind() to add the IcedTea vector as a new row to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, IcedTea)\nMcDonalds", 
-            opts = list(label = "\"rbind1\"", exercise = "TRUE", 
-                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
-        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(440, 190),\n                     Fat = c(16, 7),\n                     Protein = c(14, 1),\n                     Meat = rep(FALSE, times = 2))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
+        list(label = "rbind2", code = "# Define a drinks vector\ndrinks <- data.frame(Item = c(\"Iced Tea\", \"Hot Chocolate\", \"Regular Iced Coffee\") ,\n                     Calories = c(0, 440, 190),\n                     Fat = c(0, 16, 7),\n                     Protein = c(0, 14, 1),\n                     Meat = rep(FALSE, times = 3))\n\n# Use rbind() to add the drinks data frame as new rows to the McDonalds data frame \nMcDonalds <- rbind(McDonalds, drinks)\nMcDonalds", 
             opts = list(label = "\"rbind2\"", exercise = "TRUE", 
-                exercise.setup = "\"rbind1\""), engine = "r"), 
-        list(label = "cbind1", code = "# Define a Fiber vector\nFiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the Fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber)\nMcDonalds", 
+                exercise.setup = "\"dataframe-creation\""), engine = "r"), 
+        list(label = "cbind1", code = "# Define a Fiber vector\nfiber <- c(4, 4, 4, 1, 0, 1, 0)\n\n# Use cbind() to add the fiber vector as a new column to the McDonalds data frame \nMcDonalds <- cbind(McDonalds, Fiber = fiber)\nMcDonalds", 
             opts = list(label = "\"cbind1\"", exercise = "TRUE", 
                 exercise.setup = "\"rbind2\""), engine = "r"), 
-        list(label = "cbind2", code = "# Define a Carbs data frame\nCarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the Carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, Carbs)\nMcDonalds", 
+        list(label = "cbind2", code = "# Define a carbs data frame\ncarbs <- data.frame(Carbohydrates = c(31, 29, 32, 21, 0, 61, 31),\n                    Sugars = c(3, 2, 13, 15, 0, 56, 30))\n\n# Use cbind() to add the carbs data frame as new columns to the McDonalds data frame\nMcDonalds <- cbind(McDonalds, carbs)\nMcDonalds", 
             opts = list(label = "\"cbind2\"", exercise = "TRUE", 
                 exercise.setup = "\"cbind1\""), engine = "r"), 
         list(label = "function-dataframe", code = "# Find number of rows in data frame\nnrow(McDonalds)\n\n# Find number of columns in data frame\nncol(McDonalds)\n\n# Find dimensions of data frame\ndim(McDonalds)", 
