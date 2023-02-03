@@ -442,7 +442,7 @@ In EA2, you will be asked to join data frames.
 
 In the following set of code chunks, we will use `rbind( )` to add a few more entries to the McDonalds data frame. We will then use `cbind()` to add a few more columns with nutrition info to the McDonalds data frame. See diagram below:
 
-![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind.png){width=90%}
+![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind_new.png){width=90%}
 
 ```{r rbind2, exercise=TRUE, exercise.setup = "dataframe-creation"}
 # Define a drinks vector
