@@ -772,7 +772,7 @@ Detailed description of these packages is beyond the scope of this tutorial.
 <br/>
 
 
-## Quick notes about reproducibility
+## A few notes about reproducibility
 
 A data analysis is reproducible if all the information (data, files, etc.) required is available for someone else to re-do the entire analysis. This often means the following should be available
 
@@ -789,7 +789,7 @@ This sections list a few recommendations for making your data analysis more repr
 
 Organize each data analysis project in a folder on your computer that holds all the relevant files for that project (input data, R script, analytically results, figures, etc). Also, consider how you structure this folder. Is it structured in a way that helps your collaborators - including a future version of yourself – to navigate the analysis easily? A basic R project set up could be as follows (Image derived from Martin Chan's Blog by [Martin Chan](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/))
 
-![]()
+![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/RProject.png){width=35%}
 
 You may have noticed that the first file within "Your Project Name" folder is an RStudio Project file (.Rproj). Creating and using .Rproj ensures that your working directory points to the root folder where that .Rproj file is saved and avoids issues that might arise with using an full absolute path. Read [this blog](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/) for more info on file path referencing with RStudio Projects.
 
@@ -799,7 +799,7 @@ You may have noticed that the first file within "Your Project Name" folder is an
 
 EA2 uses RMarkdown. R Markdown weaves together narrative text and code, improving the readability/reproducibility of your code. At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report. In the last step of EA2, you will "Knit" your document to create a report for submission.
 
-Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). Quarto. It's marketed as a next generation version of R Markdown, with many new new features and capabilities. Of note, one major feature of Quarto is that it's language-agnostic. It can render documents that contain code written in R, Python, Julia, or Observablem making it very useful if you work with people who write in a different programming language.
+Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). Quarto is marketed as a next generation version of R Markdown, with many new features and capabilities. Of note, one major feature of Quarto is that it's language-agnostic. It can render documents that contain code written in R, Python, Julia, or Observablem making it very useful if you work with people who write in a different programming language.
 
 <br/>
 
