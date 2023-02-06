@@ -396,7 +396,11 @@ protein <- c(17, 14, 2, 2)
 meat <- c(TRUE, TRUE, FALSE, FALSE)
 
 # Create a data frame with previously defined vectors
-McDonalds <- data.frame(Item = item, Calories = calories, Fat = fat, Protein = protein, Meat = meat)
+McDonalds <- data.frame(Item = item, 
+                        Calories = calories, 
+                        Fat = fat, 
+                        Protein = protein, 
+                        Meat = meat)
 
 # Print data frame. 
 # Notice: the column names are Item, Calorie, Fat, Protein, and Meat. 
@@ -434,6 +438,7 @@ McDonalds[-3 , ]
 ```
 
 <br/>
+
 
 In EA2, you will be asked to join data frames.
 
@@ -512,13 +517,7 @@ Packages are the units of reproducible R code. They include R functions, the doc
 In EA2, we'll be using [Tidyverse](https://www.tidyverse.org/). Tidyverse is a collection packages useful for data science. In particular, we will use the packages `dplyr` and `ggplot2` from `tidyverse`for data processing and data visualization, respectively.
 
 
-### Inspecting your workspace
-
-It's a good practice to inspect your working directory before any coding projects. Working directory is where R will look, by default, for files you ask it to load. It's also where, by default, any files you write to disk will go.
-
-* To check you working directory use `getwd()`
-* To set your working directory use code such as `setwd("Desktop/CB201_EA2_Tutorial")`
-
+<br/>
 
 ### Importing data
 
@@ -529,6 +528,13 @@ Comma-separated file (.csv file) is one of the most commonly used  file formats 
 * `read_excel(  )` function from the `readxl` package reads in Excel files
 
 ![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/csv_file.png){width=90%}
+
+
+```{r import, exercise=TRUE}
+test <- read.csv("data/McDonalds_menu.csv")
+```
+
+<br/>
 
 
 ### Inspecting data
@@ -764,4 +770,43 @@ In EA2, you will also create interactive visualization. Specifically, you will u
 Detailed description of these packages is beyond the scope of this tutorial.
 
 <br/>
+
+
+## Quick notes about reproducibility
+
+A data analysis is reproducible if all the information (data, files, etc.) required is available for someone else to re-do the entire analysis. This often means the following should be available
+
+1. The data
+2. All steps for cleaning the raw data (including the code used) in preparation for analysis
+3. All code and software (specific versions, packages) used for analysis
+
+
+This sections list a few recommendations for making your data analysis more reproducible. This list is by no means exhaustive. For more on this topic, refer to [Reproducible Research with R & RStudio](http://christophergandrud.github.io/RepResR-RStudio/) by Christopher Gandrud. 
+
+<br/>
+
+### Create self-contained projects
+
+Organize each data analysis project in a folder on your computer that holds all the relevant files for that project (input data, R script, analytically results, figures, etc). Also, consider how you structure this folder. Is it structured in a way that helps your collaborators - including a future version of yourself – to navigate the analysis easily? A basic R project set up could be as follows (Image derived from Martin Chan's Blog by [Martin Chan](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/))
+
+![]()
+
+You may have noticed that the first file within "Your Project Name" folder is an RStudio Project file (.Rproj). Creating and using .Rproj ensures that your working directory points to the root folder where that .Rproj file is saved and avoids issues that might arise with using an full absolute path. Read [this blog](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/) for more info on file path referencing with RStudio Projects.
+
+<br/>
+
+### Use RMarkdown/Quarto
+
+EA2 uses RMarkdown. R Markdown weaves together narrative text and code, improving the readability/reproducibility of your code. At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report. In the last step of EA2, you will "Knit" your document to create a report for submission.
+
+Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). Quarto. It's marketed as a next generation version of R Markdown, with many new new features and capabilities. Of note, one major feature of Quarto is that it's language-agnostic. It can render documents that contain code written in R, Python, Julia, or Observablem making it very useful if you work with people who write in a different programming language.
+
+<br/>
+
+### Include a timestamp and session info
+
+Code is provided in the last step of EA2 to add a timestamp and session info. These are important information to document for any analysis. In particular, `sessionInfo()` summarizes your R environment and makes it easy to check the version of packages you used for the analysis.
+
+<br/>
+
 
