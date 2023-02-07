@@ -18,8 +18,6 @@ library(tidyverse)
 library(ggrepel)
 
 knitr::opts_chunk$set(echo = FALSE)
-
-McDonalds_FullData <- read.csv("https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/data/McDonalds_menu.csv")
 ```
 
 
@@ -31,7 +29,9 @@ This tutorial explains in more detail the syntax, functions, and code you'll be 
 * importing and processing data using tidyverse
 * visualizing data using ggplot2 (focusing on generating scatterplots)
 
-__Please note, this tutorial is not meant to be a comprehensive guide to R.__ If you are interested in learning R, refer to the following resources:
+<br/>
+
+__Please note, this tutorial is NOT meant to be a comprehensive guide to R.__ If you are interested in learning R, refer to the following resources:
 
 * [Harvard Catalyst online course: Introduction to R](https://catalyst.harvard.edu/courses/intro-to-r/)
 * [HSPH Bioinformatics Core workshops](https://bioinformatics.sph.harvard.edu/upcoming-workshops)
@@ -72,7 +72,6 @@ To output number, just type the number (without quotes). Run code below.
 ```{r output-number, exercise=TRUE}
 42
 ```
-
 
 <br/>
 
@@ -447,7 +446,8 @@ In EA2, you will be asked to join data frames.
 
 In the following set of code chunks, we will use `rbind( )` to add a few more entries to the McDonalds data frame. We will then use `cbind()` to add a few more columns with nutrition info to the McDonalds data frame. See diagram below:
 
-![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/rbind_cbind_new.png){width=90%}
+
+![](images/rbind_cbind_new.png){width=90%}
 
 ```{r rbind2, exercise=TRUE, exercise.setup = "dataframe-creation"}
 # Define a drinks vector
@@ -523,15 +523,20 @@ In EA2, we'll be using [Tidyverse](https://www.tidyverse.org/). Tidyverse is a c
 
 Comma-separated file (.csv file) is one of the most commonly used  file formats for data storage in the biological/biomedical sciences. csv files store tabular data (number and text) in plain text. It use comma to separate values (see figure below).
 
+![](images/csv_file.png){width=90%}
+
+<br/>
+
+There are multiple ways to read import data for analysis:
+
 * The built-in `read.csv()` function read in a .csv file as a data frame
 * `read_csv()` function from the `tidyverse` suite of packages offers more functionality
-* `read_excel(  )` function from the `readxl` package reads in Excel files
+* `read_excel()` function from the `readxl` package reads in Excel files
 
-![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/csv_file.png){width=90%}
-
+The following code chunk uses `read.csv()` followed by a relative file path to read in the full McDonalds Menu from a csv file. This data set was adapted from Kaggle dataset: [Nutrition Facts for McDonald's Menu](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts). It contains the nutritional value of items on McDonald's menu.
 
 ```{r import, exercise=TRUE}
-test <- read.csv("data/McDonalds_menu.csv")
+McDonalds_FullData <- read.csv("data/McDonalds_menu.csv")
 ```
 
 <br/>
@@ -539,21 +544,17 @@ test <- read.csv("data/McDonalds_menu.csv")
 
 ### Inspecting data
 
-In the following code chunks, we will be working with the data frame `McDonalds_FullData`. This data set was adapted from Kaggle dataset: [Nutrition Facts for McDonald's Menu](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts). It contains the nutritional value of items on McDonald's menu. 
-
-**Note, this data frame has been pre-loaded for you.** Let's start with inspecting this data frame...
+In the following code chunks, we will be working with the data frame `McDonalds_FullData`. **Note, to work with this data frame, make sure you have imported it in the previous section.** Let's start with inspecting this data frame...
 
 Previously, we looked at `nrow()`, `ncol()`, `dim()`. Try using these functions to figure out the number of rows, the number of columns, and the dimension of `McDonalds_FullData`.
 
-```{r inspect-data1, exercise=TRUE}
+```{r inspect-data1, exercise=TRUE, exercise.setup = "import"}
 
 ```
 
-
 <div id="inspect-data1-hint">
-**Hint:** number of rows = 260, number of columns = 24, dimetion = 260 x 24
+**Hint:** number of rows = 260, number of columns = 24, dimension = 260 x 24
 </div>
-
 
 
 <br/>
@@ -570,8 +571,8 @@ Other useful functions for inspecting data:
 
 Now, it's your turn to try out a few of these functions. Please feel free to edit the code chunk below.
 
-```{r inspect-data2, exercise=TRUE}
-glimpse(McDonalds_FullData)
+```{r inspect-data2, exercise=TRUE, exercise.setup = "import"}
+glimpse(___)
 ```
 
 
@@ -606,7 +607,7 @@ sqrt(95) %>% round(digit = 1)        ## use %>%
 
 Your turn: try figure out what the following lines of code is trying to achieve:
 
-```{r wrangle, exercise=TRUE}
+```{r wrangle, exercise=TRUE, exercise.setup = "import"}
 McDonalds_FullData %>%
   select(Category, Item, Calories, Calories.from.Fat) %>% 
   filter(Calories != 0) %>%
@@ -629,10 +630,15 @@ McDonalds_FullData %>%
 `ggplot2` is a dedicated package for data visualization. Every graph in ggplot2 is built using at least three components:
 
 * __data__: data set for graphing
-* __aesthetics__: variables mapped to x or y positions and aesthetics attributes such as color, shape, or size
+* __aesthetics__: variables _mapped_ to x or y positions and aesthetics attributes such as color, shape, or size
 * __geometries__: way of displaying data (e.g., bars, points, lines)
 
-Other optional elements include:
+```
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  
+  <GEOM_FUNCTION>()
+```
+
+Using the `+` operator, we can build upon a basic `ggplot2` graph and define/modify different elements including:
 
 * __scale__: map data values to visual values of an aesthetic
 * __theme__: adjust graphic background, axis, grid, etc
@@ -641,35 +647,87 @@ Other optional elements include:
 * __facets__: display subsets of data 
 * __coordinates__: transform axis
 
+For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
+
+<br/>
+
 
 ### Build a basic scatter plot
 
-Now, let's build a scatter plot to show the relationship between Calories and Protein of items in `McDonalds_FullData`.
+Now, let's build a scatter plot to show the relationship between Calories and Protein of items in `McDonalds_FullData`. Note, for all exercises on this page, `McDonalds_FullData` has been pre-loaded for you.
 
-```{r ggplot1, exercise=TRUE}
-ggplot(data = McDonalds_FullData,
-       mapping = aes(x = Calories, y = Protein)) +
-  geom_point()
+```{r ggplot1, exercise=TRUE, exercise.setup = "import"}
+ggplot(data = McDonalds_FullData,                      # data
+       mapping = aes(x = Calories, y = Protein)) +     # mappings to aesthetics
+  geom_point()                                         # geom function
 ```
 
 <br/>
 
-Your turn: try out the following changes to our plot. Feel free to edit the code in the code chunks.
 
-* To color code dots by category (e.g., Breakfast, Salads, etc), use `aes(x = Calories, y = Protein, color = Category)` for the mapping argument instead
-* To use empty circles for graphing (preferred when dots overlap), specify shape and size of within geom_point: `geom_point(shape = 21, size = 1.5)`
-* To add just x-axis and/or y-axis, try adding the following functions `scale_x_continuous(limits = c(0, 2000), breaks = seq(from = 0, to = 2000, by = 500))` and/or `scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 25))`
-* To adjust the theme of the graph, try adding the following function: `theme_bw()`
-* To add/edit labels, try adding: `labs(x = "Calories (Cal)", y = "Protein (g)", title = "Protein and Calorie of Items on McDonald's Menu")`
+### Add color and specify shape and size of dots
 
+Assume we want to color dots by category (e.g., Breakfast, Salads, etc), use empty circles for graphing (preferred when dots overlap), and specify shape and size of of the dots. We can achieve all of these by adjusting the code used to to build the basic dot plot above. Compare the code chunk below to the one above. What do you think each of the newly added argument is doing?
 
-```{r ggplot1b, exercise=TRUE}
+```{r ggplot2, exercise=TRUE, exercise.setup = "import"}
 ggplot(data = McDonalds_FullData,
-       mapping = aes(x = Calories, y = Protein)) +
-  geom_point()
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5)
 ```
 
-```{r ggplot1b-solution}
+<div id="ggplot2-hint">
+**Hint:** Look up the documentation for `geom_point()` for all the changes you can make to the dot plot.
+</div>
+
+<br/>
+
+
+### Adjust axis range and location of tick marks
+
+We can use the `+` operator to add layers and define/modify different elements of a graph. Assume we want to adjust x-axis so it starts at 0, ends at 2000, with tick marks every 500. We can achieve this by adding one line of code:
+
+```{r ggplot3, exercise=TRUE, exercise.setup = "import"}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500))
+```
+
+<br/>
+
+Your turn: Assume we want to adjust x-axis so it starts at 0, ends at 100, with tick marks every 25. Complete the code chunk below to achieve this.
+
+```{r ggplot4, exercise=TRUE, exercise.setup = "import"}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  ___
+```
+
+
+```{r ggplot4-solution}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25))
+```
+
+<br/>
+
+
+### Use built-in themes
+
+We can use themes built-in to ggplot to change the display of a graph. See a list of `ggplot2` themes [here](https://ggplot2.tidyverse.org/reference/ggtheme.html#ref-examples).
+
+Your turn: Add `theme_bw()` to the graph we have been building. What differences do to do you see between the graph with `theme_bw()` to those without?
+
+```{r ggplot5, exercise=TRUE, exercise.setup = "import"}
 ggplot(data = McDonalds_FullData,
        mapping = aes(x = Calories, y = Protein, color = Category)) +
   geom_point(shape = 21, size = 1.5) +
@@ -677,21 +735,70 @@ ggplot(data = McDonalds_FullData,
                      breaks = seq(from = 0, to = 2000, by = 500)) +
   scale_y_continuous(limits = c(0, 100), 
                      breaks = seq(from = 0, to = 100, by = 25)) +
-  theme_bw() + 
-  theme(panel.grid.minor = element_blank()) +
-  labs(x = "Calories (Cal)", y = "Protein (g)",
-       title = "Protein and Calorie of Items on McDonald's Menu")
+  ___
 ```
 
 
-For more adjustments you can make with ggplot2, see [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/index.html) or [cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
+```{r ggplot5-solution}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw()
+```
+
+<br/>
+
+
+### Add/Adjust labels
+
+To add/adjust labels, we can add a `labs()` layer.
+
+Your turn: We want make the graph more informative by changing the x-axis label to "Calories (Cal)", y-axis label to "Protein (g)", and title to "Protein and Calorie of Items on McDonald's Menu". Look at the documentation for `labs` and figure out how you would achieve this. 
+
+```{r ggplot6, exercise=TRUE, exercise.setup = "import"}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw() +
+  ___
+```
+
+
+```{r ggplot6-solution}
+ggplot(data = McDonalds_FullData,
+       mapping = aes(x = Calories, y = Protein, color = Category)) +
+  geom_point(shape = 21, size = 1.5) +
+  scale_x_continuous(limits = c(0, 2000), 
+                     breaks = seq(from = 0, to = 2000, by = 500)) +
+  scale_y_continuous(limits = c(0, 100), 
+                     breaks = seq(from = 0, to = 100, by = 25)) +
+  theme_bw() +
+  labs(x = "Calories (Cal)", y = "Protein (g)", 
+       title = "Protein and Calorie of Items on McDonald's Menu")
+```
+
+<br/>
 
 
 ### Highlight data points in a scatter plot
 
-Looking at the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will first create a data frame with just the outlier and use `McDonalds_FullData` and `outlier` to generate the graph. Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
+Looking at the scatter plot above, we see that there is one outlier. In this section, we will highlight that outlier and add a label. We will:
 
-```{r ggplot2, exercise=TRUE}
+1. create a data frame with just the outlier 
+2. use `McDonalds_FullData` and `outlier` to generate the graph, and color the outlier red
+3. use `geom_text_repel()` from the `ggrepel` package to label the outlier with its item name
+
+Compare the code chunk below with the code chunk above -- what new lines of code do you see? What do you think their functions are?
+
+```{r ggplot7, exercise=TRUE, exercise.setup = "import"}
 # Filter for outlier
 outlier <- McDonalds_FullData %>% 
   filter(Protein > 75)
@@ -715,8 +822,9 @@ ggplot(data = McDonalds_FullData,
 ```
 
 
-<div id="ggplot2-hint">
-`geom_point(data = outlier, shape = 21, size = 1.5, color = "indianred4", fill = "indianred1")` color codes the outlier red. `geom_text_repel(data = outlier, mapping = aes(label = Item),size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5)` labels the outlier with its item name.
+<div id="ggplot7-hint">
+`geom_point(data = outlier, shape = 21, size = 1.5, color = "indianred4", fill = "indianred1")` color codes the outlier red. 
+`geom_text_repel(data = outlier, mapping = aes(label = Item), size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5)` labels the outlier with its item name.
 </div>
 
 
@@ -724,7 +832,7 @@ ggplot(data = McDonalds_FullData,
 
 Your turn: try highlighting all menu items that contain chicken.
 
-```{r ggplot3, exercise=TRUE, exercise.setup = "ggplot2"}
+```{r ggplot8, exercise=TRUE, exercise.setup = "import"}
 # Hint: str_detect() can be used to find certain text patterns
 chicken <- McDonalds_FullData %>%
   filter(str_detect(string = Item, pattern = "Chicken"))
@@ -734,13 +842,14 @@ chicken <- McDonalds_FullData %>%
 ```
 
 
-```{r ggplot3-solution}
+```{r ggplot8-solution}
 ggplot(data = McDonalds_FullData,
        mapping = aes(x = Calories, y = Protein)) +
   geom_point(shape = 21, size = 1.5, color = "grey51") +
   geom_point(data = chicken, 
              shape = 21, size = 1.5, color = "indianred4", fill = "indianred1") +
-  geom_text_repel(data = outlier, mapping = aes(label = Item),
+  geom_text_repel(data = McDonalds_FullData %>% filter(Protein > 75), 
+                  mapping = aes(label = Item),
                   size = 3, segment.size = 0.2, nudge_x = -20, nudge_y = 5) +
   scale_x_continuous(limits = c(0, 2000), 
                      breaks = seq(from = 0, to = 2000, by = 500)) +
@@ -757,7 +866,12 @@ ggplot(data = McDonalds_FullData,
 
 ### Exporting your plot
 
-Use `ggsave()` function to export your plot. It defaults to saving the last plot that you displayed. It also allows you to specify different parameters of the plot. E.g., `ggsave(filename = "McDonalds_ProteinVsCalorie.tiff", bg = "white", width = 6, height = 4, units = "in", dpi = 300)`
+Use `ggsave()` function to export your plot. It defaults to saving the last plot that you displayed. It also allows you to specify different parameters of the plot. For example:
+
+```
+ggsave(filename = "McDonalds_ProteinVsCalorie.jpg", 
+       bg = "white", width = 6, height = 4, units = "in", dpi = 300)
+```
 
 
 ### Quick notes about interactive visualization
@@ -789,7 +903,8 @@ This sections list a few recommendations for making your data analysis more repr
 
 Organize each data analysis project in a folder on your computer that holds all the relevant files for that project (input data, R script, analytically results, figures, etc). Also, consider how you structure this folder. Is it structured in a way that helps your collaborators - including a future version of yourself – to navigate the analysis easily? A basic R project set up could be as follows (Image derived from Martin Chan's Blog by [Martin Chan](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/))
 
-![](https://raw.githubusercontent.com/xiuqili-xl/CB201_Spring2023/main/image/RProject.png){width=35%}
+![](images/RProject.png){width=35%}
+<br/>
 
 You may have noticed that the first file within "Your Project Name" folder is an RStudio Project file (.Rproj). Creating and using .Rproj ensures that your working directory points to the root folder where that .Rproj file is saved and avoids issues that might arise with using an full absolute path. Read [this blog](https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/) for more info on file path referencing with RStudio Projects.
 
@@ -797,9 +912,9 @@ You may have noticed that the first file within "Your Project Name" folder is an
 
 ### Use RMarkdown/Quarto
 
-EA2 uses RMarkdown. R Markdown weaves together narrative text and code, improving the readability/reproducibility of your code. At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report. In the last step of EA2, you will "Knit" your document to create a report for submission.
+EA2 uses RMarkdown. R Markdown weaves together narrative text and code, improving the readability/reproducibility of your code. At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report. In the last step of EA2, you will "Knit" your document to create a html report for submission.
 
-Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). Quarto is marketed as a next generation version of R Markdown, with many new features and capabilities. Of note, one major feature of Quarto is that it's language-agnostic. It can render documents that contain code written in R, Python, Julia, or Observablem making it very useful if you work with people who write in a different programming language.
+Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). Quarto is marketed as a next generation version of R Markdown, with many new features and capabilities. Of note, one major feature of Quarto is that it's language-agnostic. It can render documents that contain code written in R, Python, Julia, or Observablem, making it very useful if you work with people who write in a different programming language.
 
 <br/>
 
@@ -808,5 +923,4 @@ Note, Posit (formally RStudio) recently launched [Quarto](https://quarto.org/). 
 Code is provided in the last step of EA2 to add a timestamp and session info. These are important information to document for any analysis. In particular, `sessionInfo()` summarizes your R environment and makes it easy to check the version of packages you used for the analysis.
 
 <br/>
-
 
